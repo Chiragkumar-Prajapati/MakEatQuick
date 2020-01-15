@@ -1,0 +1,2681 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+<link href="https://fonts.googleapis.com/css?family=Autour+One" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Handlee" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Concert+One" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script> 
+$(document).ready(function(){
+    $(".placeHolder").mouseenter(function(){
+        $(this).children(".panel").slideDown("slow");
+    });
+	$(".placeHolder").mouseleave(function(){
+        $(this).children(".panel").slideUp("slow");
+    });
+	$("#startersHolder").mouseleave(function(){
+		$("#startersImage").attr({
+			src : "Food Pictures/Starters.jpg" ,
+			alt : "Default Starters Image" ,
+			width : 1000,
+			height : 200
+		});
+    });
+	$("#mainDishHolder").mouseleave(function(){
+		$("#mainDishImage").attr({
+			src : "Food Pictures/MainDish.jpg" ,
+			alt : "Default Starters Image" ,
+			width : 1000,
+			height : 200
+		});
+    });
+	$("#sidesHolder").mouseleave(function(){
+		$("#sidesImage").attr({
+			src : "Food Pictures/Sides.jpg" ,
+			alt : "Default Starters Image" ,
+			width : 1000,
+			height : 200
+		});
+    });
+	$("#dessertsHolder").mouseleave(function(){
+		$("#dessertsImage").attr({
+			src : "Food Pictures/Desserts.jpg" ,
+			alt : "Default Starters Image" ,
+			width : 1000,
+			height : 200
+		});
+    });
+	$("#beveragesHolder").mouseleave(function(){
+		$("#beveragesImage").attr({
+			src : "Food Pictures/Beverages.jpg" ,
+			alt : "Default Starters Image" ,
+			width : 1000,
+			height : 200
+		});
+    });
+	
+	$("#orderList").on("click", ".closeBtn", function() {
+		$(this).closest(".oLContainer").remove();
+		
+		var thisPrice = $(this).closest(".oLContainer").find(".starter1DynamicPriceOrderList").text();
+		
+		var currentPrice = document.getElementById("tValue").innerHTML;
+		
+		var newPrice = currentPrice - thisPrice;
+		
+		document.getElementById("tValue").innerHTML = newPrice.toFixed(2);
+	
+	});	
+	
+});
+</script>
+<script>
+	function openStarter1Modal(buttonID) {
+		
+		// Get the modal
+		var modal = document.getElementById('starter1Modal');
+
+		// Get the button that opens the modal
+		var btn = buttonID;
+
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[0];
+		
+		var addToCart = document.getElementById('starter1Buy');
+
+		modal.style.display = "block";
+
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function() {
+			modal.style.display = "none";
+			
+			resetStarter1Modal();	
+		}
+		
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+				
+				resetStarter1Modal();
+			}
+		}
+		
+		addToCart.onclick = function() {
+			modal.style.display = "none";
+			
+			
+			var container = document.createElement("div");
+			container.className = 'oLContainer';
+			
+			//close button
+			var closeBtn = document.createElement("span")
+			closeBtn.className = "closeBtn";
+			var closeText = document.createTextNode("\u00D7");
+			closeBtn.appendChild(closeText);
+			container.appendChild(closeBtn);
+			
+			//food name
+			var foodNameContainer = document.createElement("p");
+			var foodName = document.getElementsByClassName("itemName")[0].innerHTML;
+			var t = document.createTextNode(foodName);
+			foodNameContainer.appendChild(t);			
+			container.appendChild(foodNameContainer);
+			
+			//food price
+			var priceHolder = document.createElement("div");
+			
+			var priceName = document.createElement("span");
+			var priceText = document.createTextNode("Price: $");
+			priceName.appendChild(priceText);
+			
+			var priceValue = document.createElement("span");
+			var passedPriceValue = document.getElementById("starter1DynamicPrice").innerHTML;
+			priceValue.innerHTML = passedPriceValue;
+			<!-- var value = document.createTextNode(passedPriceValue); -->
+			priceValue.className = "starter1DynamicPriceOrderList";
+			<!-- priceValue.appendChild(value); -->
+			priceName.appendChild(priceValue);
+			
+			priceHolder.appendChild(priceName);
+			container.appendChild(priceHolder);
+			
+			
+			//quantity
+			var quantityHolder = document.createElement("div");
+			
+			var quantityName = document.createElement("span");
+			var quantityText = document.createTextNode("Quantity: ");
+			quantityName.appendChild(quantityText);
+			
+			var quantityValue = document.createElement("span");			
+			var passedQtyValue = document.getElementById("starter1Qty").innerHTML;
+			<!-- var numItems = document.createTextNode(passedQtyValue); -->
+			quantityValue.innerHTML = passedQtyValue;
+			quantityValue.className = "starter1QtyOrderList";
+			<!-- quantityValue.appendChild(numItems); -->
+			quantityName.appendChild(quantityValue);
+			
+			quantityHolder.appendChild(quantityName);
+			container.appendChild(quantityHolder);
+			
+			//quantity buttons
+			var incButton = document.createElement("Button");
+			var incText = document.createTextNode("\u002B");			
+			incButton.appendChild(incText);
+			incButton.id = "incStarter1OrderList";
+			
+			quantityHolder.appendChild(incButton);
+			
+			var decButton = document.createElement("Button");
+			var decText = document.createTextNode("\u002D");			
+			decButton.appendChild(decText);	
+			decButton.id = "decStarter1OrderList";
+			
+			quantityHolder.appendChild(decButton);			
+			
+			document.getElementById("orderList").appendChild(container);
+			
+			increaseTotalValue();
+			
+			resetStarter1Modal();
+		}
+		
+	}	
+	function openStarter2Modal(buttonID) {
+		
+		// Get the modal
+		var modal = document.getElementById('starter2Modal');
+
+		// Get the button that opens the modal
+		var btn = buttonID;
+
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[1];
+		
+		var addToCart = document.getElementById('starter2Buy');
+
+		modal.style.display = "block";
+
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function() {
+			modal.style.display = "none";
+			
+			resetStarter2Modal();	
+		}
+		
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+				
+				resetStarter2Modal();
+			}
+		}
+		
+		addToCart.onclick = function() {
+			modal.style.display = "none";
+			
+			
+			var container = document.createElement("div");
+			container.className = 'oLContainer';
+			
+			//close button
+			var closeBtn = document.createElement("span")
+			closeBtn.className = "closeBtn";
+			var closeText = document.createTextNode("\u00D7");
+			closeBtn.appendChild(closeText);
+			container.appendChild(closeBtn);
+			
+			//food name
+			var foodNameContainer = document.createElement("p");
+			var foodName = document.getElementsByClassName("itemName")[1].innerHTML;
+			var t = document.createTextNode(foodName);
+			foodNameContainer.appendChild(t);			
+			container.appendChild(foodNameContainer);
+			
+			
+			//food price
+			var priceHolder = document.createElement("div");
+			
+			var priceName = document.createElement("span");
+			var priceText = document.createTextNode("Price: $");
+			priceName.appendChild(priceText);
+			
+			var priceValue = document.createElement("span");
+			var passedPriceValue = document.getElementById("starter2DynamicPrice").innerHTML;
+			priceValue.innerHTML = passedPriceValue;
+			priceValue.className = "starter1DynamicPriceOrderList";
+			priceName.appendChild(priceValue);
+			
+			priceHolder.appendChild(priceName);
+			container.appendChild(priceHolder);
+			
+			
+			//quantity
+			var quantityHolder = document.createElement("div");
+			
+			var quantityName = document.createElement("span");
+			var quantityText = document.createTextNode("Quantity: ");
+			quantityName.appendChild(quantityText);
+			
+			var quantityValue = document.createElement("span");			
+			var passedQtyValue = document.getElementById("starter2Qty").innerHTML;
+			quantityValue.innerHTML = passedQtyValue;
+			quantityValue.className = "starter2QtyOrderList";
+			<!-- quantityValue.appendChild(numItems); -->
+			quantityName.appendChild(quantityValue);
+			
+			quantityHolder.appendChild(quantityName);
+			container.appendChild(quantityHolder);
+			
+			//quantity buttons
+			var incButton = document.createElement("Button");
+			var incText = document.createTextNode("\u002B");			
+			incButton.appendChild(incText);
+			incButton.id = "incStarter2OrderList";
+			
+			quantityHolder.appendChild(incButton);
+			
+			var decButton = document.createElement("Button");
+			var decText = document.createTextNode("\u002D");			
+			decButton.appendChild(decText);	
+			decButton.id = "decStarter2OrderList";
+			
+			quantityHolder.appendChild(decButton);			
+			
+			document.getElementById("orderList").appendChild(container);
+			
+			increaseTotalValue();
+			
+			resetStarter2Modal();
+		}
+		
+	}
+	function openMain1Modal(buttonID) {
+		
+		// Get the modal
+		var modal = document.getElementById('main1Modal');
+
+		// Get the button that opens the modal
+		var btn = buttonID;
+
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[2];
+		
+		var addToCart = document.getElementById('main1Buy');
+
+		modal.style.display = "block";
+
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function() {
+			modal.style.display = "none";
+			
+			resetMain1Modal();	
+		}
+		
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+				
+				resetMain1Modal();
+			}
+		}
+		
+		addToCart.onclick = function() {
+			modal.style.display = "none";
+			
+			
+			var container = document.createElement("div");
+			container.className = 'oLContainer';
+			
+			//close button
+			var closeBtn = document.createElement("span")
+			closeBtn.className = "closeBtn";
+			var closeText = document.createTextNode("\u00D7");
+			closeBtn.appendChild(closeText);
+			container.appendChild(closeBtn);
+			
+			//food name
+			var foodNameContainer = document.createElement("p");
+			var foodName = document.getElementsByClassName("itemName")[2].innerHTML;
+			var t = document.createTextNode(foodName);
+			foodNameContainer.appendChild(t);			
+			container.appendChild(foodNameContainer);
+			
+			
+			//food price
+			var priceHolder = document.createElement("div");
+			
+			var priceName = document.createElement("span");
+			var priceText = document.createTextNode("Price: $");
+			priceName.appendChild(priceText);
+			
+			var priceValue = document.createElement("span");
+			var passedPriceValue = document.getElementById("main1DynamicPrice").innerHTML;
+			priceValue.innerHTML = passedPriceValue;
+			<!-- var value = document.createTextNode(passedPriceValue); -->
+			priceValue.className = "starter1DynamicPriceOrderList";
+			<!-- priceValue.appendChild(value); -->
+			priceName.appendChild(priceValue);
+			
+			priceHolder.appendChild(priceName);
+			container.appendChild(priceHolder);
+			
+			
+			//quantity
+			var quantityHolder = document.createElement("div");
+			
+			var quantityName = document.createElement("span");
+			var quantityText = document.createTextNode("Quantity: ");
+			quantityName.appendChild(quantityText);
+			
+			var quantityValue = document.createElement("span");			
+			var passedQtyValue = document.getElementById("main1Qty").innerHTML;
+			<!-- var numItems = document.createTextNode(passedQtyValue); -->
+			quantityValue.innerHTML = passedQtyValue;
+			quantityValue.className = "main1QtyOrderList";
+			<!-- quantityValue.appendChild(numItems); -->
+			quantityName.appendChild(quantityValue);
+			
+			quantityHolder.appendChild(quantityName);
+			container.appendChild(quantityHolder);
+			
+			//quantity buttons
+			var incButton = document.createElement("Button");
+			var incText = document.createTextNode("\u002B");			
+			incButton.appendChild(incText);
+			incButton.id = "incMain1OrderList";
+			
+			quantityHolder.appendChild(incButton);
+			
+			var decButton = document.createElement("Button");
+			var decText = document.createTextNode("\u002D");			
+			decButton.appendChild(decText);	
+			decButton.id = "decMain1OrderList";
+			
+			quantityHolder.appendChild(decButton);			
+			
+			document.getElementById("orderList").appendChild(container);
+			
+			increaseTotalValue();
+			
+			resetMain1Modal();
+		}		
+	}
+	function openMain2Modal(buttonID) {
+		
+		// Get the modal
+		var modal = document.getElementById('main2Modal');
+
+		// Get the button that opens the modal
+		var btn = buttonID;
+
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[2];
+		
+		var addToCart = document.getElementById('main2Buy');
+
+		modal.style.display = "block";
+
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function() {
+			modal.style.display = "none";
+			
+			resetMain2Modal();	
+		}
+		
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+				
+				resetMain2Modal();
+			}
+		}
+		
+		addToCart.onclick = function() {
+			modal.style.display = "none";
+			
+			
+			var container = document.createElement("div");
+			container.className = 'oLContainer';
+			
+			//close button
+			var closeBtn = document.createElement("span")
+			closeBtn.className = "closeBtn";
+			var closeText = document.createTextNode("\u00D7");
+			closeBtn.appendChild(closeText);
+			container.appendChild(closeBtn);
+			
+			//food name
+			var foodNameContainer = document.createElement("p");
+			var foodName = document.getElementsByClassName("itemName")[3].innerHTML;
+			var t = document.createTextNode(foodName);
+			foodNameContainer.appendChild(t);			
+			container.appendChild(foodNameContainer);
+			
+			//food price
+			var priceHolder = document.createElement("div");
+			
+			var priceName = document.createElement("span");
+			var priceText = document.createTextNode("Price: $");
+			priceName.appendChild(priceText);
+			
+			var priceValue = document.createElement("span");
+			var passedPriceValue = document.getElementById("main2DynamicPrice").innerHTML;
+			priceValue.innerHTML = passedPriceValue;
+			<!-- var value = document.createTextNode(passedPriceValue); -->
+			priceValue.className = "starter1DynamicPriceOrderList";
+			<!-- priceValue.appendChild(value); -->
+			priceName.appendChild(priceValue);
+			
+			priceHolder.appendChild(priceName);
+			container.appendChild(priceHolder);
+			
+			
+			//quantity
+			var quantityHolder = document.createElement("div");
+			
+			var quantityName = document.createElement("span");
+			var quantityText = document.createTextNode("Quantity: ");
+			quantityName.appendChild(quantityText);
+			
+			var quantityValue = document.createElement("span");			
+			var passedQtyValue = document.getElementById("main2Qty").innerHTML;
+			<!-- var numItems = document.createTextNode(passedQtyValue); -->
+			quantityValue.innerHTML = passedQtyValue;
+			quantityValue.className = "main2QtyOrderList";
+			<!-- quantityValue.appendChild(numItems); -->
+			quantityName.appendChild(quantityValue);
+			
+			quantityHolder.appendChild(quantityName);
+			container.appendChild(quantityHolder);
+			
+			//quantity buttons
+			var incButton = document.createElement("Button");
+			var incText = document.createTextNode("\u002B");			
+			incButton.appendChild(incText);
+			incButton.id = "incMain2OrderList";
+			
+			quantityHolder.appendChild(incButton);
+			
+			var decButton = document.createElement("Button");
+			var decText = document.createTextNode("\u002D");			
+			decButton.appendChild(decText);	
+			decButton.id = "decMain2OrderList";
+			
+			quantityHolder.appendChild(decButton);			
+			
+			document.getElementById("orderList").appendChild(container);
+			
+			increaseTotalValue();
+			
+			resetMain2Modal();
+		}		
+	}
+	function openSide1Modal(buttonID) {
+		
+		// Get the modal
+		var modal = document.getElementById('side1Modal');
+
+		// Get the button that opens the modal
+		var btn = buttonID;
+
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[4];
+		
+		var addToCart = document.getElementById('side1Buy');
+
+		modal.style.display = "block";
+
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function() {
+			modal.style.display = "none";
+			
+			resetSides1Modal();	
+		}
+		
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+				
+				resetSides1Modal();
+			}
+		}
+		
+		addToCart.onclick = function() {
+			modal.style.display = "none";
+			
+			
+			var container = document.createElement("div");
+			container.className = 'oLContainer';
+			
+			//close button
+			var closeBtn = document.createElement("span")
+			closeBtn.className = "closeBtn";
+			var closeText = document.createTextNode("\u00D7");
+			closeBtn.appendChild(closeText);
+			container.appendChild(closeBtn);
+			
+			//food name
+			var foodNameContainer = document.createElement("p");
+			var foodName = document.getElementsByClassName("itemName")[4].innerHTML;
+			var t = document.createTextNode(foodName);
+			foodNameContainer.appendChild(t);			
+			container.appendChild(foodNameContainer);
+			
+			//food price
+			var priceHolder = document.createElement("div");
+			
+			var priceName = document.createElement("span");
+			var priceText = document.createTextNode("Price: $");
+			priceName.appendChild(priceText);
+			
+			var priceValue = document.createElement("span");
+			var passedPriceValue = document.getElementById("side1DynamicPrice").innerHTML;
+			priceValue.innerHTML = passedPriceValue;
+			<!-- var value = document.createTextNode(passedPriceValue); -->
+			priceValue.className = "starter1DynamicPriceOrderList";
+			<!-- priceValue.appendChild(value); -->
+			priceName.appendChild(priceValue);
+			
+			priceHolder.appendChild(priceName);
+			container.appendChild(priceHolder);
+			
+			
+			//quantity
+			var quantityHolder = document.createElement("div");
+			
+			var quantityName = document.createElement("span");
+			var quantityText = document.createTextNode("Quantity: ");
+			quantityName.appendChild(quantityText);
+			
+			var quantityValue = document.createElement("span");			
+			var passedQtyValue = document.getElementById("side1Qty").innerHTML;
+			<!-- var numItems = document.createTextNode(passedQtyValue); -->
+			quantityValue.innerHTML = passedQtyValue;
+			quantityValue.className = "side1QtyOrderList";
+			<!-- quantityValue.appendChild(numItems); -->
+			quantityName.appendChild(quantityValue);
+			
+			quantityHolder.appendChild(quantityName);
+			container.appendChild(quantityHolder);
+			
+			//quantity buttons
+			var incButton = document.createElement("Button");
+			var incText = document.createTextNode("\u002B");			
+			incButton.appendChild(incText);
+			incButton.id = "incSide1OrderList";
+			
+			quantityHolder.appendChild(incButton);
+			
+			var decButton = document.createElement("Button");
+			var decText = document.createTextNode("\u002D");			
+			decButton.appendChild(decText);	
+			decButton.id = "decSide1OrderList";
+			
+			quantityHolder.appendChild(decButton);			
+			
+			document.getElementById("orderList").appendChild(container);
+			
+			increaseTotalValue();
+			
+			resetSides1Modal();
+		}		
+	}
+	function openSide2Modal(buttonID) {
+		
+		// Get the modal
+		var modal = document.getElementById('side2Modal');
+
+		// Get the button that opens the modal
+		var btn = buttonID;
+
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[5];
+		
+		var addToCart = document.getElementById('side2Buy');
+
+		modal.style.display = "block";
+
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function() {
+			modal.style.display = "none";
+			
+			resetSides2Modal();	
+		}
+		
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+				
+				resetSides2Modal();
+			}
+		}
+		
+		addToCart.onclick = function() {
+			modal.style.display = "none";
+			
+			
+			var container = document.createElement("div");
+			container.className = 'oLContainer';
+			
+			//close button
+			var closeBtn = document.createElement("span")
+			closeBtn.className = "closeBtn";
+			var closeText = document.createTextNode("\u00D7");
+			closeBtn.appendChild(closeText);
+			container.appendChild(closeBtn);
+			
+			//food name
+			var foodNameContainer = document.createElement("p");
+			var foodName = document.getElementsByClassName("itemName")[5].innerHTML;
+			var t = document.createTextNode(foodName);
+			foodNameContainer.appendChild(t);			
+			container.appendChild(foodNameContainer);
+			
+			//food price
+			var priceHolder = document.createElement("div");
+			
+			var priceName = document.createElement("span");
+			var priceText = document.createTextNode("Price: $");
+			priceName.appendChild(priceText);
+			
+			var priceValue = document.createElement("span");
+			var passedPriceValue = document.getElementById("side2DynamicPrice").innerHTML;
+			priceValue.innerHTML = passedPriceValue;
+			<!-- var value = document.createTextNode(passedPriceValue); -->
+			priceValue.className = "starter1DynamicPriceOrderList";
+			<!-- priceValue.appendChild(value); -->
+			priceName.appendChild(priceValue);
+			
+			priceHolder.appendChild(priceName);
+			container.appendChild(priceHolder);
+			
+			
+			//quantity
+			var quantityHolder = document.createElement("div");
+			
+			var quantityName = document.createElement("span");
+			var quantityText = document.createTextNode("Quantity: ");
+			quantityName.appendChild(quantityText);
+			
+			var quantityValue = document.createElement("span");			
+			var passedQtyValue = document.getElementById("side2Qty").innerHTML;
+			<!-- var numItems = document.createTextNode(passedQtyValue); -->
+			quantityValue.innerHTML = passedQtyValue;
+			quantityValue.className = "side2QtyOrderList";
+			<!-- quantityValue.appendChild(numItems); -->
+			quantityName.appendChild(quantityValue);
+			
+			quantityHolder.appendChild(quantityName);
+			container.appendChild(quantityHolder);
+			
+			//quantity buttons
+			var incButton = document.createElement("Button");
+			var incText = document.createTextNode("\u002B");			
+			incButton.appendChild(incText);
+			incButton.id = "incSide2OrderList";
+			
+			quantityHolder.appendChild(incButton);
+			
+			var decButton = document.createElement("Button");
+			var decText = document.createTextNode("\u002D");			
+			decButton.appendChild(decText);	
+			decButton.id = "decSide2OrderList";
+			
+			quantityHolder.appendChild(decButton);			
+			
+			document.getElementById("orderList").appendChild(container);
+			
+			increaseTotalValue();
+			
+			resetSides2Modal();
+		}		
+	}
+	function openDessert1Modal(buttonID) {
+		
+		// Get the modal
+		var modal = document.getElementById('dessert1Modal');
+
+		// Get the button that opens the modal
+		var btn = buttonID;
+
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[6];
+		
+		var addToCart = document.getElementById('dessert1Buy');
+
+		modal.style.display = "block";
+
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function() {
+			modal.style.display = "none";
+			
+			resetDessert1Modal();	
+		}
+		
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+				
+				resetDessert1Modal();
+			}
+		}
+		
+		addToCart.onclick = function() {
+			modal.style.display = "none";
+			
+			
+			var container = document.createElement("div");
+			container.className = 'oLContainer';
+			
+			//close button
+			var closeBtn = document.createElement("span")
+			closeBtn.className = "closeBtn";
+			var closeText = document.createTextNode("\u00D7");
+			closeBtn.appendChild(closeText);
+			container.appendChild(closeBtn);
+			
+			//food name
+			var foodNameContainer = document.createElement("p");
+			var foodName = document.getElementsByClassName("itemName")[6].innerHTML;
+			var t = document.createTextNode(foodName);
+			foodNameContainer.appendChild(t);			
+			container.appendChild(foodNameContainer);
+			
+			//food price
+			var priceHolder = document.createElement("div");
+			
+			var priceName = document.createElement("span");
+			var priceText = document.createTextNode("Price: $");
+			priceName.appendChild(priceText);
+			
+			var priceValue = document.createElement("span");
+			var passedPriceValue = document.getElementById("dessert1DynamicPrice").innerHTML;
+			priceValue.innerHTML = passedPriceValue;
+			<!-- var value = document.createTextNode(passedPriceValue); -->
+			priceValue.className = "starter1DynamicPriceOrderList";
+			<!-- priceValue.appendChild(value); -->
+			priceName.appendChild(priceValue);
+			
+			priceHolder.appendChild(priceName);
+			container.appendChild(priceHolder);
+			
+			
+			//quantity
+			var quantityHolder = document.createElement("div");
+			
+			var quantityName = document.createElement("span");
+			var quantityText = document.createTextNode("Quantity: ");
+			quantityName.appendChild(quantityText);
+			
+			var quantityValue = document.createElement("span");			
+			var passedQtyValue = document.getElementById("dessert1Qty").innerHTML;
+			<!-- var numItems = document.createTextNode(passedQtyValue); -->
+			quantityValue.innerHTML = passedQtyValue;
+			quantityValue.className = "dessert1QtyOrderList";
+			<!-- quantityValue.appendChild(numItems); -->
+			quantityName.appendChild(quantityValue);
+			
+			quantityHolder.appendChild(quantityName);
+			container.appendChild(quantityHolder);
+			
+			//quantity buttons
+			var incButton = document.createElement("Button");
+			var incText = document.createTextNode("\u002B");			
+			incButton.appendChild(incText);
+			incButton.id = "incDessert1OrderList";
+			
+			quantityHolder.appendChild(incButton);
+			
+			var decButton = document.createElement("Button");
+			var decText = document.createTextNode("\u002D");			
+			decButton.appendChild(decText);	
+			decButton.id = "decDessert1OrderList";
+			
+			quantityHolder.appendChild(decButton);			
+			
+			document.getElementById("orderList").appendChild(container);
+			
+			increaseTotalValue();
+			
+			resetDessert1Modal();
+		}		
+	}
+	function openDessert2Modal(buttonID) {
+		
+		// Get the modal
+		var modal = document.getElementById('dessert2Modal');
+
+		// Get the button that opens the modal
+		var btn = buttonID;
+
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[7];
+		
+		var addToCart = document.getElementById('dessert2Buy');
+
+		modal.style.display = "block";
+
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function() {
+			modal.style.display = "none";
+			
+			resetDessert2Modal();	
+		}
+		
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+				
+				resetDessert2Modal();
+			}
+		}
+		
+		addToCart.onclick = function() {
+			modal.style.display = "none";
+			
+			
+			var container = document.createElement("div");
+			container.className = 'oLContainer';
+			
+			//close button
+			var closeBtn = document.createElement("span")
+			closeBtn.className = "closeBtn";
+			var closeText = document.createTextNode("\u00D7");
+			closeBtn.appendChild(closeText);
+			container.appendChild(closeBtn);
+			
+			//food name
+			var foodNameContainer = document.createElement("p");
+			var foodName = document.getElementsByClassName("itemName")[7].innerHTML;
+			var t = document.createTextNode(foodName);
+			foodNameContainer.appendChild(t);			
+			container.appendChild(foodNameContainer);
+			
+			
+			//food price
+			var priceHolder = document.createElement("div");
+			
+			var priceName = document.createElement("span");
+			var priceText = document.createTextNode("Price: $");
+			priceName.appendChild(priceText);
+			
+			var priceValue = document.createElement("span");
+			var passedPriceValue = document.getElementById("dessert2DynamicPrice").innerHTML;
+			priceValue.innerHTML = passedPriceValue;
+			<!-- var value = document.createTextNode(passedPriceValue); -->
+			priceValue.className = "starter1DynamicPriceOrderList";
+			<!-- priceValue.appendChild(value); -->
+			priceName.appendChild(priceValue);
+			
+			priceHolder.appendChild(priceName);
+			container.appendChild(priceHolder);
+			
+			
+			//quantity
+			var quantityHolder = document.createElement("div");
+			
+			var quantityName = document.createElement("span");
+			var quantityText = document.createTextNode("Quantity: ");
+			quantityName.appendChild(quantityText);
+			
+			var quantityValue = document.createElement("span");			
+			var passedQtyValue = document.getElementById("dessert2Qty").innerHTML;
+			<!-- var numItems = document.createTextNode(passedQtyValue); -->
+			quantityValue.innerHTML = passedQtyValue;
+			quantityValue.className = "dessert2QtyOrderList";
+			<!-- quantityValue.appendChild(numItems); -->
+			quantityName.appendChild(quantityValue);
+			
+			quantityHolder.appendChild(quantityName);
+			container.appendChild(quantityHolder);
+			
+			//quantity buttons
+			var incButton = document.createElement("Button");
+			var incText = document.createTextNode("\u002B");			
+			incButton.appendChild(incText);
+			incButton.id = "incDessert2OrderList";
+			
+			quantityHolder.appendChild(incButton);
+			
+			var decButton = document.createElement("Button");
+			var decText = document.createTextNode("\u002D");			
+			decButton.appendChild(decText);	
+			decButton.id = "decDessert2OrderList";
+			
+			quantityHolder.appendChild(decButton);			
+			
+			document.getElementById("orderList").appendChild(container);
+			
+			increaseTotalValue();
+			
+			resetDessert2Modal();
+		}		
+	}
+	function openBeverage1Modal(buttonID) {
+		
+		// Get the modal
+		var modal = document.getElementById('beverage1Modal');
+
+		// Get the button that opens the modal
+		var btn = buttonID;
+
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[8];
+		
+		var addToCart = document.getElementById('beverage1Buy');
+
+		modal.style.display = "block";
+
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function() {
+			modal.style.display = "none";
+			
+			resetBeverages1Modal();	
+		}
+		
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+				
+				resetBeverages1Modal();
+			}
+		}
+		
+		addToCart.onclick = function() {
+			modal.style.display = "none";
+			
+			
+			var container = document.createElement("div");
+			container.className = 'oLContainer';
+			
+			//close button
+			var closeBtn = document.createElement("span")
+			closeBtn.className = "closeBtn";
+			var closeText = document.createTextNode("\u00D7");
+			closeBtn.appendChild(closeText);
+			container.appendChild(closeBtn);
+			
+			//food name
+			var foodNameContainer = document.createElement("p");
+			var foodName = document.getElementsByClassName("itemName")[8].innerHTML;
+			var t = document.createTextNode(foodName);
+			foodNameContainer.appendChild(t);			
+			container.appendChild(foodNameContainer);
+			
+			//food price
+			var priceHolder = document.createElement("div");
+			
+			var priceName = document.createElement("span");
+			var priceText = document.createTextNode("Price: $");
+			priceName.appendChild(priceText);
+			
+			var priceValue = document.createElement("span");
+			var passedPriceValue = document.getElementById("beverage1DynamicPrice").innerHTML;
+			priceValue.innerHTML = passedPriceValue;
+			<!-- var value = document.createTextNode(passedPriceValue); -->
+			priceValue.className = "starter1DynamicPriceOrderList";
+			<!-- priceValue.appendChild(value); -->
+			priceName.appendChild(priceValue);
+			
+			priceHolder.appendChild(priceName);
+			container.appendChild(priceHolder);
+			
+			
+			//quantity
+			var quantityHolder = document.createElement("div");
+			
+			var quantityName = document.createElement("span");
+			var quantityText = document.createTextNode("Quantity: ");
+			quantityName.appendChild(quantityText);
+			
+			var quantityValue = document.createElement("span");			
+			var passedQtyValue = document.getElementById("beverage1Qty").innerHTML;
+			<!-- var numItems = document.createTextNode(passedQtyValue); -->
+			quantityValue.innerHTML = passedQtyValue;
+			quantityValue.className = "beverage1QtyOrderList";
+			<!-- quantityValue.appendChild(numItems); -->
+			quantityName.appendChild(quantityValue);
+			
+			quantityHolder.appendChild(quantityName);
+			container.appendChild(quantityHolder);
+			
+			//quantity buttons
+			var incButton = document.createElement("Button");
+			var incText = document.createTextNode("\u002B");			
+			incButton.appendChild(incText);
+			incButton.id = "incBeverage1OrderList";
+			
+			quantityHolder.appendChild(incButton);
+			
+			var decButton = document.createElement("Button");
+			var decText = document.createTextNode("\u002D");			
+			decButton.appendChild(decText);	
+			decButton.id = "decBeverage1OrderList";
+			
+			quantityHolder.appendChild(decButton);			
+			
+			document.getElementById("orderList").appendChild(container);
+			
+			increaseTotalValue();
+			
+			resetBeverages1Modal();
+		}		
+	}
+	function openBeverage2Modal(buttonID) {
+		
+		// Get the modal
+		var modal = document.getElementById('beverage2Modal');
+
+		// Get the button that opens the modal
+		var btn = buttonID;
+
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[9];
+		
+		var addToCart = document.getElementById('beverage2Buy');
+
+		modal.style.display = "block";
+
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function() {
+			modal.style.display = "none";
+			
+			resetBeverages2Modal();	
+		}
+		
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+				
+				resetBeverages2Modal();
+			}
+		}
+		
+		addToCart.onclick = function() {
+			modal.style.display = "none";
+			
+			
+			var container = document.createElement("div");
+			container.className = 'oLContainer';
+			
+			//close button
+			var closeBtn = document.createElement("span")
+			closeBtn.className = "closeBtn";
+			var closeText = document.createTextNode("\u00D7");
+			closeBtn.appendChild(closeText);
+			container.appendChild(closeBtn);
+			
+			//food name
+			var foodNameContainer = document.createElement("p");
+			var foodName = document.getElementsByClassName("itemName")[9].innerHTML;
+			var t = document.createTextNode(foodName);
+			foodNameContainer.appendChild(t);			
+			container.appendChild(foodNameContainer);
+			
+			//food price
+			var priceHolder = document.createElement("div");
+			
+			var priceName = document.createElement("span");
+			var priceText = document.createTextNode("Price: $");
+			priceName.appendChild(priceText);
+			
+			var priceValue = document.createElement("span");
+			var passedPriceValue = document.getElementById("beverage2DynamicPrice").innerHTML;
+			priceValue.innerHTML = passedPriceValue;
+			<!-- var value = document.createTextNode(passedPriceValue); -->
+			priceValue.className = "starter1DynamicPriceOrderList";
+			<!-- priceValue.appendChild(value); -->
+			priceName.appendChild(priceValue);
+			
+			priceHolder.appendChild(priceName);
+			container.appendChild(priceHolder);
+			
+			
+			//quantity
+			var quantityHolder = document.createElement("div");
+			
+			var quantityName = document.createElement("span");
+			var quantityText = document.createTextNode("Quantity: ");
+			quantityName.appendChild(quantityText);
+			
+			var quantityValue = document.createElement("span");			
+			var passedQtyValue = document.getElementById("beverage2Qty").innerHTML;
+			<!-- var numItems = document.createTextNode(passedQtyValue); -->
+			quantityValue.innerHTML = passedQtyValue;
+			quantityValue.className = "beverage2QtyOrderList";
+			<!-- quantityValue.appendChild(numItems); -->
+			quantityName.appendChild(quantityValue);
+			
+			quantityHolder.appendChild(quantityName);
+			container.appendChild(quantityHolder);
+			
+			//quantity buttons
+			var incButton = document.createElement("Button");
+			var incText = document.createTextNode("\u002B");			
+			incButton.appendChild(incText);
+			incButton.id = "incBeverage2OrderList";
+			
+			quantityHolder.appendChild(incButton);
+			
+			var decButton = document.createElement("Button");
+			var decText = document.createTextNode("\u002D");			
+			decButton.appendChild(decText);	
+			decButton.id = "decBeverage2OrderList";
+			
+			quantityHolder.appendChild(decButton);			
+			
+			document.getElementById("orderList").appendChild(container);
+			
+			increaseTotalValue();
+			
+			resetBeverages1Modal();
+		}		
+	}
+	
+</script>
+<script>
+	function itemHover(elementID) {
+		var elem = elementID;
+		changeImage(elem);
+	}
+	function changeImage(elemID) {
+		var defaultImage = elemID.src;
+		
+		if(elemID == "starters1")
+		{
+			document.getElementById("startersImage").src = 'Food Pictures/Starters/Shrimp with wasabi.jpg';
+		}
+		else if(elemID == "starters2")
+		{
+			document.getElementById("startersImage").src = 'Food Pictures/Starters/Patacones.jpg';
+		}
+		else if(elemID == "mainDish1")
+		{
+			document.getElementById("mainDishImage").src = 'Food Pictures/Main Dishes/Barbecue Burger.jpg';
+		}
+		else if(elemID == "mainDish2")
+		{
+			document.getElementById("mainDishImage").src = 'Food Pictures/Main Dishes/Chicken Teriyaki Don.jpg';
+		}
+		else if(elemID == "sides1")
+		{
+			document.getElementById("sidesImage").src = 'Food Pictures/Sides/Fire Bao.jpg';
+		}
+		else if(elemID == "sides2")
+		{
+			document.getElementById("sidesImage").src = 'Food Pictures/Sides/Meatballs.jpg';
+		}
+		else if(elemID == "desserts1")
+		{
+			document.getElementById("dessertsImage").src = 'Food Pictures/Desserts/Cookies and Cream.jpg';
+		}
+		else if(elemID == "desserts2")
+		{
+			document.getElementById("dessertsImage").src = 'Food Pictures/Desserts/Smores Bao.jpg';
+		}
+		else if(elemID == "beverages1")
+		{
+			document.getElementById("beveragesImage").src = 'Food Pictures/Beverages/Blue Lemonade.jpg';
+		}
+		else if(elemID == "beverages2")
+		{
+			document.getElementById("beveragesImage").src = 'Food Pictures/Beverages/Iced Tea.jpg';
+		}
+		else
+		{
+			
+		}
+	}
+</script>
+<script>
+	function increaseStarter1() {
+		var quantity = parseInt(document.getElementById("starter1Qty").innerHTML);
+		if(quantity < 100)
+		{
+			quantity++;
+			
+			document.getElementById("starter1Qty").innerHTML = quantity.toString();
+		
+			var price = parseFloat(document.getElementById("starter1DynamicPrice").innerHTML);
+			var defaultPrice = 4.25;
+			var newPrice = price + defaultPrice;
+			document.getElementById("starter1DynamicPrice").innerHTML = newPrice.toFixed(2);	
+		}		
+			
+	}	
+	function decreaseStarter1() {
+		var quantity = parseInt(document.getElementById("starter1Qty").innerHTML);
+		if(quantity > 1)
+		{
+			quantity--;
+			
+			document.getElementById("starter1Qty").innerHTML = quantity.toString();
+		
+			var price = parseFloat(document.getElementById("starter1DynamicPrice").innerHTML);
+			var defaultPrice = 4.25;
+			var newPrice = price - defaultPrice;
+			document.getElementById("starter1DynamicPrice").innerHTML = newPrice.toFixed(2);
+		}		
+		
+	}
+	function increaseStarter2() {
+		var quantity = parseInt(document.getElementById("starter2Qty").innerHTML);
+		if(quantity < 100)
+		{
+			quantity++;
+			
+			document.getElementById("starter2Qty").innerHTML = quantity.toString();
+		
+			var price = parseFloat(document.getElementById("starter2DynamicPrice").innerHTML);
+			var defaultPrice = 4.95;
+			var newPrice = price + defaultPrice;
+			document.getElementById("starter2DynamicPrice").innerHTML = newPrice.toFixed(2);	
+		}		
+			
+	}	
+	function decreaseStarter2() {
+		var quantity = parseInt(document.getElementById("starter2Qty").innerHTML);
+		if(quantity > 1)
+		{
+			quantity--;
+			
+			document.getElementById("starter2Qty").innerHTML = quantity.toString();
+		
+			var price = parseFloat(document.getElementById("starter2DynamicPrice").innerHTML);
+			var defaultPrice = 4.95;
+			var newPrice = price - defaultPrice;
+			document.getElementById("starter2DynamicPrice").innerHTML = newPrice.toFixed(2);
+		}		
+		
+	}
+	function increaseMain1() {
+		var quantity = parseInt(document.getElementById("main1Qty").innerHTML);
+		if(quantity < 100)
+		{
+			quantity++;
+			
+			document.getElementById("main1Qty").innerHTML = quantity.toString();
+		
+			var price = parseFloat(document.getElementById("main1DynamicPrice").innerHTML);
+			var defaultPrice = 8.50;
+			var newPrice = price + defaultPrice;
+			document.getElementById("main1DynamicPrice").innerHTML = newPrice.toFixed(2);	
+		}		
+			
+	}	
+	function decreaseMain1() {
+		var quantity = parseInt(document.getElementById("main1Qty").innerHTML);
+		if(quantity > 1)
+		{
+			quantity--;
+			
+			document.getElementById("main1Qty").innerHTML = quantity.toString();
+		
+			var price = parseFloat(document.getElementById("main1DynamicPrice").innerHTML);
+			var defaultPrice = 8.50;
+			var newPrice = price - defaultPrice;
+			document.getElementById("main1DynamicPrice").innerHTML = newPrice.toFixed(2);
+		}		
+		
+	}
+	function increaseMain2() {
+		var quantity = parseInt(document.getElementById("main2Qty").innerHTML);
+		if(quantity < 100)
+		{
+			quantity++;
+			
+			document.getElementById("main2Qty").innerHTML = quantity.toString();
+		
+			var price = parseFloat(document.getElementById("main2DynamicPrice").innerHTML);
+			var defaultPrice = 9;
+			var newPrice = price + defaultPrice;
+			document.getElementById("main2DynamicPrice").innerHTML = newPrice.toFixed(2);	
+		}		
+			
+	}	
+	function decreaseMain2() {
+		var quantity = parseInt(document.getElementById("main2Qty").innerHTML);
+		if(quantity > 1)
+		{
+			quantity--;
+			
+			document.getElementById("main2Qty").innerHTML = quantity.toString();
+		
+			var price = parseFloat(document.getElementById("main2DynamicPrice").innerHTML);
+			var defaultPrice = 9;
+			var newPrice = price - defaultPrice;
+			document.getElementById("main2DynamicPrice").innerHTML = newPrice.toFixed(2);
+		}		
+		
+	}
+	function increaseSide1() {
+		var quantity = parseInt(document.getElementById("side1Qty").innerHTML);
+		if(quantity < 100)
+		{
+			quantity++;
+			
+			document.getElementById("side1Qty").innerHTML = quantity.toString();
+		
+			var price = parseFloat(document.getElementById("side1DynamicPrice").innerHTML);
+			var defaultPrice = 7;
+			var newPrice = price + defaultPrice;
+			document.getElementById("side1DynamicPrice").innerHTML = newPrice.toFixed(2);	
+		}		
+			
+	}	
+	function decreaseSide1() {
+		var quantity = parseInt(document.getElementById("side1Qty").innerHTML);
+		if(quantity > 1)
+		{
+			quantity--;
+			
+			document.getElementById("side1Qty").innerHTML = quantity.toString();
+		
+			var price = parseFloat(document.getElementById("side1DynamicPrice").innerHTML);
+			var defaultPrice = 7;
+			var newPrice = price - defaultPrice;
+			document.getElementById("side1DynamicPrice").innerHTML = newPrice.toFixed(2);
+		}		
+		
+	}
+	function increaseSide2() {
+		var quantity = parseInt(document.getElementById("side2Qty").innerHTML);
+		if(quantity < 100)
+		{
+			quantity++;
+			
+			document.getElementById("side2Qty").innerHTML = quantity.toString();
+		
+			var price = parseFloat(document.getElementById("side2DynamicPrice").innerHTML);
+			var defaultPrice = 7;
+			var newPrice = price + defaultPrice;
+			document.getElementById("side2DynamicPrice").innerHTML = newPrice.toFixed(2);	
+		}		
+			
+	}	
+	function decreaseSide2() {
+		var quantity = parseInt(document.getElementById("side2Qty").innerHTML);
+		if(quantity > 1)
+		{
+			quantity--;
+			
+			document.getElementById("side2Qty").innerHTML = quantity.toString();
+		
+			var price = parseFloat(document.getElementById("side2DynamicPrice").innerHTML);
+			var defaultPrice = 7;
+			var newPrice = price - defaultPrice;
+			document.getElementById("side2DynamicPrice").innerHTML = newPrice.toFixed(2);
+		}		
+		
+	}
+	function increaseDessert1() {
+		var quantity = parseInt(document.getElementById("dessert1Qty").innerHTML);
+		if(quantity < 100)
+		{
+			quantity++;
+			
+			document.getElementById("dessert1Qty").innerHTML = quantity.toString();
+		
+			var price = parseFloat(document.getElementById("dessert1DynamicPrice").innerHTML);
+			var defaultPrice = 5;
+			var newPrice = price + defaultPrice;
+			document.getElementById("dessert1DynamicPrice").innerHTML = newPrice.toFixed(2);	
+		}		
+			
+	}	
+	function decreaseDessert1() {
+		var quantity = parseInt(document.getElementById("dessert1Qty").innerHTML);
+		if(quantity > 1)
+		{
+			quantity--;
+			
+			document.getElementById("dessert1Qty").innerHTML = quantity.toString();
+		
+			var price = parseFloat(document.getElementById("dessert1DynamicPrice").innerHTML);
+			var defaultPrice = 5;
+			var newPrice = price - defaultPrice;
+			document.getElementById("dessert1DynamicPrice").innerHTML = newPrice.toFixed(2);
+		}		
+		
+	}
+	function increaseDessert2() {
+		var quantity = parseInt(document.getElementById("dessert2Qty").innerHTML);
+		if(quantity < 100)
+		{
+			quantity++;
+			
+			document.getElementById("dessert2Qty").innerHTML = quantity.toString();
+		
+			var price = parseFloat(document.getElementById("dessert2DynamicPrice").innerHTML);
+			var defaultPrice = 4.50;
+			var newPrice = price + defaultPrice;
+			document.getElementById("dessert2DynamicPrice").innerHTML = newPrice.toFixed(2);	
+		}		
+			
+	}	
+	function decreaseDessert2() {
+		var quantity = parseInt(document.getElementById("dessert2Qty").innerHTML);
+		if(quantity > 1)
+		{
+			quantity--;
+			
+			document.getElementById("dessert2Qty").innerHTML = quantity.toString();
+		
+			var price = parseFloat(document.getElementById("dessert2DynamicPrice").innerHTML);
+			var defaultPrice = 4.50;
+			var newPrice = price - defaultPrice;
+			document.getElementById("dessert2DynamicPrice").innerHTML = newPrice.toFixed(2);
+		}		
+		
+	}
+	function increaseBeverage1() {
+		var quantity = parseInt(document.getElementById("beverage1Qty").innerHTML);
+		if(quantity < 100)
+		{
+			quantity++;
+			
+			document.getElementById("beverage1Qty").innerHTML = quantity.toString();
+		
+			var price = parseFloat(document.getElementById("beverage1DynamicPrice").innerHTML);
+			var defaultPrice = 2;
+			var newPrice = price + defaultPrice;
+			document.getElementById("beverage1DynamicPrice").innerHTML = newPrice.toFixed(2);	
+		}		
+			
+	}	
+	function decreaseBeverage1() {
+		var quantity = parseInt(document.getElementById("beverage1Qty").innerHTML);
+		if(quantity > 1)
+		{
+			quantity--;
+			
+			document.getElementById("beverage1Qty").innerHTML = quantity.toString();
+		
+			var price = parseFloat(document.getElementById("beverage1DynamicPrice").innerHTML);
+			var defaultPrice = 2;
+			var newPrice = price - defaultPrice;
+			document.getElementById("beverage1DynamicPrice").innerHTML = newPrice.toFixed(2);
+		}		
+		
+	}
+	function increaseBeverage2() {
+		var quantity = parseInt(document.getElementById("beverage2Qty").innerHTML);
+		if(quantity < 100)
+		{
+			quantity++;
+			
+			document.getElementById("beverage2Qty").innerHTML = quantity.toString();
+		
+			var price = parseFloat(document.getElementById("beverage2DynamicPrice").innerHTML);
+			var defaultPrice = 1.50;
+			var newPrice = price + defaultPrice;
+			document.getElementById("beverage2DynamicPrice").innerHTML = newPrice.toFixed(2);	
+		}		
+			
+	}	
+	function decreaseBeverage2() {
+		var quantity = parseInt(document.getElementById("beverage2Qty").innerHTML);
+		if(quantity > 1)
+		{
+			quantity--;
+			
+			document.getElementById("beverage2Qty").innerHTML = quantity.toString();
+		
+			var price = parseFloat(document.getElementById("beverage2DynamicPrice").innerHTML);
+			var defaultPrice = 1.50;
+			var newPrice = price - defaultPrice;
+			document.getElementById("beverage2DynamicPrice").innerHTML = newPrice.toFixed(2);
+		}		
+		
+	}	
+	
+</script>
+<script>
+	function resetStarter1Modal() {
+		document.getElementById("starter1Qty").innerHTML = "1";
+		document.getElementById("starter1DynamicPrice").innerHTML = "4.25";		
+	
+	}
+	function resetStarter2Modal() {
+		document.getElementById("starter2Qty").innerHTML = "1";
+		document.getElementById("starter2DynamicPrice").innerHTML = "4.95";		
+	
+	}
+	function resetMain1Modal() {
+		document.getElementById("main1Qty").innerHTML = "1";
+		document.getElementById("main1DynamicPrice").innerHTML = "8.50";		
+	
+	}
+	function resetMain2Modal() {
+		document.getElementById("main2Qty").innerHTML = "1";
+		document.getElementById("main2DynamicPrice").innerHTML = "9";		
+	
+	}
+	function resetSides1Modal() {
+		document.getElementById("side1Qty").innerHTML = "1";
+		document.getElementById("side1DynamicPrice").innerHTML = "7";		
+	
+	}
+	function resetSides2Modal() {
+		document.getElementById("side2Qty").innerHTML = "1";
+		document.getElementById("side2DynamicPrice").innerHTML = "7";		
+	
+	}
+	function resetDessert1Modal() {
+		document.getElementById("dessert1Qty").innerHTML = "1";
+		document.getElementById("dessert1DynamicPrice").innerHTML = "5";		
+	
+	}
+	function resetDessert2Modal() {
+		document.getElementById("dessert2Qty").innerHTML = "1";
+		document.getElementById("dessert2DynamicPrice").innerHTML = "4.50";		
+	
+	}
+	function resetBeverages1Modal() {
+		document.getElementById("beverage1Qty").innerHTML = "1";
+		document.getElementById("beverage1DynamicPrice").innerHTML = "2";		
+	
+	}
+	function resetBeverages2Modal() {
+		document.getElementById("beverage2Qty").innerHTML = "1";
+		document.getElementById("beverage2DynamicPrice").innerHTML = "1.50";		
+	
+	}
+	
+	function increaseTotalValue() {
+		var elemCount = document.getElementById("orderList").childElementCount;
+		
+		var totVal = 0;
+		var dynamicPrice = document.getElementsByClassName("starter1DynamicPriceOrderList");
+		
+		for(i = 0; i < elemCount; i++)
+		{
+			totVal += parseFloat(dynamicPrice[i].innerHTML);
+		}
+		
+		document.getElementById("tValue").innerHTML = totVal.toFixed(2);
+	
+	}	
+	
+</script>
+<style>
+html {
+  background: url(./images/background.jpeg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+* {
+    box-sizing: border-box;
+}
+
+body {
+	background-color: rgba(0, 0, 0, 0.3);
+	margin: 0;
+}
+
+.active {
+	background-color: red;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: indigo;
+}
+
+li {
+    float: left;
+	font-weight: bold;
+}
+
+li a, .dropbtn {
+    display: inline-block;
+	font-family: 'sofia';
+	font-size: 20px;
+    color: gold;
+    text-align: center;
+    padding: 14px 25px;
+    text-decoration: none;
+    background-color: indigo;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: red;
+}
+
+li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: gold;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: red}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+div.topTitle {
+	overflow: hidden;
+	max-width: 100%;
+	max-height: 230px;
+}
+
+div.topTitle img {
+	position: relative;
+	min-width: 100%;
+	height: 230px;
+}
+
+div.topTitle p {
+	position: absolute;
+	font-family: 'sofia';
+	margin: 0;
+	top: 0;
+	padding: 70px 0;
+	text-align: center-left;
+	font-size: 65px;
+}
+
+.column {
+    float: left;
+    padding: 10px;
+}
+
+.column.left {
+	width: 15%;
+	
+}
+
+.column.middle {
+	width: 35%;
+}
+
+.column.right {
+	width: 35%;
+}
+
+.column.rightest {
+	width: 15%;
+}
+
+.row: after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+@media (max-width: 1200px) {
+	.column.left {
+		width: 10%;
+		
+	}
+    .column.middle {
+        width: 50%;
+		
+    }
+	.column.right {
+        width: 35%;
+    }
+	.column.rightest {
+        width: 35%;
+    }
+	
+	.placeHolder {
+		font-size: 0.8em;
+	}
+	
+	.orderListContainer {
+		font-size: 1em;
+		
+	}
+	
+	.totalContainer {
+		font-size: 0.90em;
+	}
+	
+	.totalName {
+		text-align: left;
+	}
+	
+	.totalValue {
+		width: 60%;
+	}
+}
+
+@media (max-width: 600px) {
+	.column.left {
+		width: 5%;
+		
+	}
+    .column.middle {
+        width: 40%;
+		
+    }
+	.column.right {
+        width: 40%;
+    }
+	.column.rightest {
+        width: 5%;
+    }
+	
+	.placeHolder {
+		font-size: 0.5em;
+	}
+	
+	.orderListContainer {
+		font-size: 0.8em;
+		
+	}
+	
+	.totalContainer {
+		font-size: 0.70em;
+	}
+	
+	.totalName {
+		text-align: left;
+	}
+	
+	.checkOutContainer {
+		font-size: 0.65em;
+	}
+}
+
+.placeHolder {
+	width: 100%;
+	height: 100%;
+	/*border-radius: 2em;*/
+}
+
+div.placeHolder img {
+	display: block;
+	width: 100%;
+	height: 80%;
+	
+	
+	/*cursor: pointer;*/
+}
+
+div.placeHolder:hover {
+
+}
+
+div.placeHolder:hover #lastFoodName {
+	border-bottom-right-radius: 0em;
+	border-bottom-left-radius: 0em;
+}
+
+#startersImage {
+
+	border-top-right-radius: 2em;
+	border-top-left-radius: 2em;
+}
+
+div.placeHolder:hover .foodName {
+	text-shadow: 2px 2px 0px #FF0000;
+}
+
+div.foodName {
+    padding: 0.75em;
+    background-color: indigo;
+	height: 20%;
+	text-align: center;
+	color: gold;
+	font-size: 1.8em;
+	font-weight: bold;
+	font-family: 'sofia';
+	/*cursor: pointer;*/
+}
+
+#lastFoodName {
+	border-bottom-right-radius: 2em;
+	border-bottom-left-radius: 2em;
+}
+
+
+div.panel {
+	padding: 1em;
+    background-color: rgb(40, 40, 40);
+	/*<!-- border: 0.1em solid; -->
+	<!-- border-color: red; -->*/
+	color: white;
+    display: none;
+	width: 100%;
+	height: 30em;
+	
+	overflow: auto;
+}
+
+#lastpanel {
+	border-bottom-right-radius: 2em;
+	border-bottom-left-radius: 2em;
+}
+
+div.itemWrapper {
+	background-color: rgb(150, 150, 150);
+	border-radius: 1em;
+	
+    /*cursor: pointer;*/
+	width: 100%;
+	margin: auto;
+	margin-bottom: 1em;
+	
+	/*overflow: auto;*/
+	overflow: hidden;
+	
+	text-align: center;
+	
+}
+
+div.itemWrapper:hover {
+	box-shadow: 0 0 0 2pt yellow;
+}
+
+div.wrapperTopbar {	
+    color: white;
+	font-size: 1.1em;
+	font-family: 'Autour One', cursive;
+	border-radius: 1em;
+	
+    text-align: center;    
+	
+	/*float: left;*/
+	height: 40%;
+	margin: auto;
+	width: 80%;
+	margin: 1.3em auto;
+	margin-bottom: 1.5em;
+	position: relative;
+}
+
+div.wrapperTopbar:hover {	
+	/*text-shadow: 0 0 1px blue;*/
+}
+
+div.itemName {
+	background-color: hsl(0, 80%, 50%); 
+	/*border-radius: 2em;*/
+	float: left;
+	width: 60%;
+	
+	border: 2px solid darkred;
+	border-radius: 5px;
+}
+
+div.itemPrice {
+	background-color: rgb(255, 85, 75);
+	border: 2px solid darkred;
+	float: right;	
+	width: 30%;
+	border-radius: 5px;
+}
+
+div.itemDesc {
+	background-color: rgb(60, 60, 60);
+	color: white;
+	
+	text-align: center-left;
+	border-radius: 0.3em;
+	
+	/*float: left;*/
+	height: 20%;
+	margin: auto;
+	width: 80%;
+	margin: auto;
+	margin-top: 3em;
+	padding: 1em;
+	
+	font-family: 'Handlee', cursive;
+	text-align: left;
+	outline: 3px inset black;
+}
+
+div.ratingsBar {
+	color: white;
+	height: 30%;
+	margin: auto;
+	width: 80%;
+	margin: auto;
+	
+}
+
+div.wrapperBottombar {	
+    text-align: center;
+    font-size: 1.2em;
+	
+	/*float: left;*/
+	height: 10%;
+	margin: auto;
+	width: 50%;
+	margin: auto;
+}
+
+button.button {
+	background-color: hsl(0, 100%, 50%); 
+    color: white;
+    padding: 0.5em;
+	
+    font-size: 1em;
+	font-family: 'Concert One', cursive;
+	text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+	
+	border: 0.18em solid darkred;
+	border-radius: 10px;
+	box-shadow: 0 0.2em rgb(100, 100, 100);
+	transition-duration: 0.4s;	
+}
+
+button.button:hover {
+	background-color: hsl(0, 100%, 30%);
+}
+
+button.button:active {
+	background-color: hsl(0, 100%, 30%); 
+	box-shadow: 0 0.1em #555;
+	transform: translateY(4px);
+}
+
+button.addToCartButton {
+	width: 60%;
+	margin-top: 1em;
+	margin-bottom: 1.5em;
+	margin-left: 1em;
+	padding: 2px;
+	position: relative;
+	/*float: left;*/
+}
+
+/*------------------------Order List-------------------------------------------*/
+
+.orderContainer {
+	background-color: indigo;
+	position: absolute;
+	height: 85%;
+	width: 40%;
+	max-width: 30%;
+	color: gold;
+	
+	border: 1px solid rgb(30, 30, 30);
+	border-bottom-left-radius: 2em;
+	border-bottom-right-radius: 2em;
+	padding-left: 0.5em; 
+	padding-right: 0.5em;
+	
+	box-sizing: none;
+}
+
+#orderContainerName {
+	text-align: center-left;
+	padding-left: 0.5em;
+	padding: auto;
+	font-size: 2em;
+	font-family: 'sofia';
+	text-shadow: 2px 2px 0px #FF0000;
+	max-height: 10%;
+}
+
+div.orderListContainer {
+	background-color: rgba(0, 0, 0, 0.3);;
+	padding: 1em;
+	border: 1px solid rgb(30, 30, 30);
+	color: white;
+	height: 75%;
+	max-height: 80%;
+	margin: auto;
+	overflow: auto;
+	
+	border-radius: 1.5em;
+}
+
+.oLContainer {
+	background-color: gold;
+	color: white;
+	padding: 5px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: bold;
+	font-size: 1.3em;
+	text-align: center;
+	margin: 5px;
+	text-shadow: 2px 2px 0px black;
+
+}
+.oLContainer:hover {
+	outline-style: outset;
+	outline-width: 3px;
+    outline-color: red;
+}
+
+.closeBtn {
+	top: 0;
+	right: 0;
+	position: relative;
+    color: white;
+    font-size: 40px;	
+    font-weight: bold;
+	background-color: red;
+	outline: 1px solid darkred;
+	cursor: pointer;
+	float: right;
+}
+
+
+div.totalContainer {
+	font-weight: bold;
+	height: 5%;
+	padding: 1em;
+	width: 100%;
+	margin: auto;
+	
+	text-align: center;
+	font-family: 'Roboto', sans-serif;
+	
+	position: relative;
+}
+
+div.totalName {
+	text-align: center;
+	float: left;
+	width: 30%;
+	margin: auto;
+}
+
+div.totalValue {
+	position: relative;
+	text-align: center-right;
+	background-color: white;
+	border: 2px solid rgb(30, 30, 30);
+	color: black;
+	float: right;
+	width: 70%;
+	margin: auto;
+	border-radius: 1.5em;
+}
+
+div.checkOutContainer {
+	position: relative;
+	height: 5%;
+	margin: auto;
+	width: 60%;
+	margin: auto;
+	margin-top: 0.75em;
+}
+button.checkoutButton {
+	background-color: red;
+	color: gold;
+	width: 100%;
+	margin: auto;
+	font-size: 1em;
+}
+
+button {
+	background-color: red;
+	color: white;
+	width: 40px;
+	height: 40px;
+	font-size: 25px;
+	margin: 5px;
+	border: 2px solid darkred;
+	cursor: pointer;
+
+}
+
+/*------------------------Modal-------------------------------------------*/
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	font-family: 'sofia';
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+	color: black;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: indigo;
+    color: gold;
+	text-shadow: 2px 2px 0px #FF0000;
+}
+
+.modal-body {
+	padding: 2px 16px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: bold;
+}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: indigo;
+    color: gold;
+}
+
+.modal-footer:hover {
+    background-color: #3c0069;
+	cursor: pointer;
+	text-shadow: 2px 2px 0px #FF0000;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+}
+
+</style>
+</head>
+<body onscroll="myFunction()">
+<div class="topTitle">
+	<img src="./images/navImg.jpeg">
+	<p style="color:gold; text-shadow: 2px 2px 0px #FF0000;">MakEatQuick</p>
+</div>
+
+<!--navigation bar list-->
+<ul>
+	<li><a href="./index.html">Home</a></li>
+	<li><a class="active">Menu</a></li>
+	<li><a href="./contact_us.html">Contact Us</a></li>
+	<li><a href="./checkout.html">Checkout</a></li>
+	<li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Profile</a>
+    <div class="dropdown-content">
+      <a href="./login.html">Login</a>
+      <a href="./create_user.html">Signup</a>
+    </div>
+  </li>
+</ul>
+
+<div class="row">
+	<div class="column left">
+	</div>
+	<div class="column middle">
+		<div id="startersHolder" class="placeHolder">
+			<img id="startersImage" src="Food Pictures/Starters.jpg" alt="Default Starters Image" width="1000" height="200">
+			<div class="foodName">Starters</div>
+				<div class="panel">
+					<div class="itemWrapper" id="starters1" 
+						onmouseenter="itemHover(this.id)"
+						onclick="itemHover(this.id)">
+						<div class="wrapperTopbar">
+							<div class="itemName">Shrimp with wasabi</div>
+							<div class="itemPrice">$4.25</div>
+						</div>				
+						<div class="itemDesc">
+						Small fluffy rice with shrimp and wasabi on top.
+						</div>
+						<div class="ratingsBar">
+							<img src="Ratings Pictures/3-5.png" alt="3.5 out of 5 Stars" width="200" height="100">
+						</div>
+						<div class="wrapperBottombar">
+							<button class="button addToCartButton" id="starter1Btn"
+							onclick="openStarter1Modal(this.id)">Add to cart</button>
+							<div id="starter1Modal" class="modal">
+							  <div class="modal-content">
+								<div class="modal-header">
+								  <span class="close">&times;</span>
+								  <h2>Shrimp With Wasabi</h2>
+								</div>
+								<div class="modal-body">
+								  <p>Quantity: <span class="quantityContainer" id="starter1Qty">1</span>     
+								  <button onclick="increaseStarter1()">&#43;</button>   
+								  <button onclick="decreaseStarter1()">&#45;</button></p>								  
+								  <p>Price: $ <span id="starter1DynamicPrice">4.25</span></p>
+								</div>
+								<div class="modal-footer" id="starter1Buy">
+								  <h3>Add to Cart</h3>
+								</div>
+							  </div>
+							</div>
+						</div>
+					</div>
+					<div class="itemWrapper" id="starters2" 
+						onmouseenter="itemHover(this.id)">
+						<div class="wrapperTopbar">
+							<div class="itemName">Patacones</div>
+							<div class="itemPrice">$4.95</div>
+						</div>
+						<div class="itemDesc">
+						A vegetarian appetizer made with fried plantains that comes with guacamole, pico de gallo and 
+						Costa Rican refried beans.
+						</div>
+						<div class="ratingsBar">
+							<img src="Ratings Pictures/4.png" alt="4 out of 5 Stars" width="200" height="100">
+						</div>
+						<div class="wrapperBottombar">
+							<button class="button addToCartButton" id="starter2Btn"
+							onclick="openStarter2Modal(this.id)">Add to cart</button>
+							<div id="starter2Modal" class="modal">
+							  <div class="modal-content">
+								<div class="modal-header">
+								  <span class="close">&times;</span>
+								  <h2>Patacones</h2>
+								</div>
+								<div class="modal-body">
+								  <p>Quantity: <span class="quantityContainer" id="starter2Qty">1</span>     
+								  <button onclick="increaseStarter2()">&#43;</button>   
+								  <button onclick="decreaseStarter2()">&#45;</button></p>								  
+								  <p>Price: $ <span id="starter2DynamicPrice">4.95</span></p>
+								</div>
+								<div class="modal-footer" id="starter2Buy">
+								  <h3>Add to Cart</h3>
+								</div>
+							  </div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+		<div id="mainDishHolder" class="placeHolder">
+			<img id="mainDishImage" src="Food Pictures/MainDish.jpg" alt="Default Main Dish Image" width="1000" height="200">
+			<div class="foodName">Main Dishes</div>
+				<div class="panel">
+					<div class="itemWrapper" id="mainDish1" 
+						onmouseenter="itemHover(this.id)">
+						<div class="wrapperTopbar">
+							<div class="itemName">Barbecue Burger</div>
+							<div class="itemPrice">$8.50</div>
+						</div>
+						<div class="itemDesc">
+						Delicious barbecue patty burger with crispy fries and sweet and sour sauce on the side.
+						</div>
+						<div class="ratingsBar">
+							<img src="Ratings Pictures/4-5.png" alt="4.5 out of 5 Stars" width="200" height="100">
+						</div>
+						<div class="wrapperBottombar">
+							<button class="button addToCartButton" id="main1Btn"
+							onclick="openMain1Modal(this.id)">Add to cart</button>
+							<div id="main1Modal" class="modal">
+							  <div class="modal-content">
+								<div class="modal-header">
+								  <span class="close">&times;</span>
+								  <h2>Barbecue Burger</h2>
+								</div>
+								<div class="modal-body">
+								  <p>Quantity: <span class="quantityContainer" id="main1Qty">1</span>     
+								  <button onclick="increaseMain1()">&#43;</button>   
+								  <button onclick="decreaseMain1()">&#45;</button></p>								  
+								  <p>Price: $ <span id="main1DynamicPrice">8.50</span></p>
+								</div>
+								<div class="modal-footer" id="main1Buy">
+								  <h3>Add to Cart</h3>
+								</div>
+							  </div>
+							</div>
+						</div>
+					</div>
+					<div class="itemWrapper" id="mainDish2" 
+						onmouseenter="itemHover(this.id)">
+						<div class="wrapperTopbar">
+							<div class="itemName">Chicken Teriyaki Don</div>
+							<div class="itemPrice">$9</div>
+						</div>
+						<div class="itemDesc">
+						Fluffy rice topped with chicken and teriyaki sauce.
+						</div>
+						<div class="ratingsBar">
+							<img src="Ratings Pictures/5.png" alt="5 out of 5 Stars" width="200" height="100">
+						</div>
+						<div class="wrapperBottombar">
+							<button class="button addToCartButton" id="main2Btn"
+							onclick="openMain2Modal(this.id)">Add to cart</button>
+							<div id="main2Modal" class="modal">
+							  <div class="modal-content">
+								<div class="modal-header">
+								  <span class="close">&times;</span>
+								  <h2>Chicken Teriyaki Don</h2>
+								</div>
+								<div class="modal-body">
+								  <p>Quantity: <span class="quantityContainer" id="main2Qty">1</span>     
+								  <button onclick="increaseMain2()">&#43;</button>   
+								  <button onclick="decreaseMain2()">&#45;</button></p>								  
+								  <p>Price: $ <span id="main2DynamicPrice">9</span></p>
+								</div>
+								<div class="modal-footer" id="main2Buy">
+								  <h3>Add to Cart</h3>
+								</div>
+							  </div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+		<div id="sidesHolder" class="placeHolder">
+			<img id="sidesImage" src="Food Pictures/Sides.jpg" alt="Default Sides Image" width="1000" height="200">
+			<div class="foodName">Sides</div>
+				<div class="panel">
+					<div class="itemWrapper" id="sides1" 
+						onmouseenter="itemHover(this.id)">
+						<div class="wrapperTopbar">
+							<div class="itemName">Fire Bao</div>
+							<div class="itemPrice">$7</div>
+						</div>
+						<div class="itemDesc">
+						The Sriracha mayonnaise gives it creaminess with a sizzle in your mouth while the pickles 
+						give the bao that extra kick to complete the dish.
+						</div>
+						<div class="ratingsBar">
+							<img src="Ratings Pictures/4.png" alt="4 out of 5 Stars" width="200" height="100">
+						</div>
+						<div class="wrapperBottombar">
+							<button class="button addToCartButton" id="side1Btn"
+							onclick="openSide1Modal(this.id)">Add to cart</button>
+							<div id="side1Modal" class="modal">
+							  <div class="modal-content">
+								<div class="modal-header">
+								  <span class="close">&times;</span>
+								  <h2>Fire Bao</h2>
+								</div>
+								<div class="modal-body">
+								  <p>Quantity: <span class="quantityContainer" id="side1Qty">1</span>     
+								  <button onclick="increaseSide1()">&#43;</button>   
+								  <button onclick="decreaseSide1()">&#45;</button></p>								  
+								  <p>Price: $ <span id="side1DynamicPrice">7</span></p>
+								</div>
+								<div class="modal-footer" id="side1Buy">
+								  <h3>Add to Cart</h3>
+								</div>
+							  </div>
+							</div>
+						</div>
+					</div>
+					<div class="itemWrapper" id="sides2" 
+						onmouseenter="itemHover(this.id)">
+						<div class="wrapperTopbar">
+							<div class="itemName">Meat balls</div>
+							<div class="itemPrice">$7</div>
+						</div>
+						<div class="itemDesc">
+						Meat balls topped with sweet and sour sauce.
+						</div>
+						<div class="ratingsBar">
+							<img src="Ratings Pictures/2-5.png" alt="2.5 out of 5 Stars" width="200" height="100">
+						</div>
+						<div class="wrapperBottombar">
+							<button class="button addToCartButton" id="side2Btn"
+							onclick="openSide2Modal(this.id)">Add to cart</button>
+							<div id="side2Modal" class="modal">
+							  <div class="modal-content">
+								<div class="modal-header">
+								  <span class="close">&times;</span>
+								  <h2>Meatballs</h2>
+								</div>
+								<div class="modal-body">
+								  <p>Quantity: <span class="quantityContainer" id="side2Qty">1</span>     
+								  <button onclick="increaseSide2()">&#43;</button>   
+								  <button onclick="decreaseSide2()">&#45;</button></p>								  
+								  <p>Price: $ <span id="side2DynamicPrice">7</span></p>
+								</div>
+								<div class="modal-footer" id="side2Buy">
+								  <h3>Add to Cart</h3>
+								</div>
+							  </div>
+							</div>
+						</div>		
+					</div>
+				</div>
+		</div>
+		<div id="dessertsHolder" class="placeHolder">
+			<img id="dessertsImage" src="Food Pictures/Desserts.jpg" alt="Default Desserts Image" width="1000" height="200">
+			<div class="foodName">Desserts</div>
+				<div class="panel">
+					<div class="itemWrapper" id="desserts1" 
+						onmouseenter="itemHover(this.id)">
+						<div class="wrapperTopbar">
+							<div class="itemName">Cookies N Cream</div>
+							<div class="itemPrice">$5</div>
+						</div>
+						<div class="itemDesc">
+						Oreo cookies with milk. Comes with Vanilla ice cream on the side.
+						</div>
+						<div class="ratingsBar">
+							<img src="Ratings Pictures/5.png" alt="5 out of 5 Stars" width="200" height="100">
+						</div>
+						<div class="wrapperBottombar">
+							<button class="button addToCartButton" id="dessert1Btn"
+							onclick="openDessert1Modal(this.id)">Add to cart</button>
+							<div id="dessert1Modal" class="modal">
+							  <div class="modal-content">
+								<div class="modal-header">
+								  <span class="close">&times;</span>
+								  <h2>Cookies N Cream</h2>
+								</div>
+								<div class="modal-body">
+								  <p>Quantity: <span class="quantityContainer" id="dessert1Qty">1</span>     
+								  <button onclick="increaseDessert1()">&#43;</button>   
+								  <button onclick="decreaseDessert1()">&#45;</button></p>								  
+								  <p>Price: $ <span id="dessert1DynamicPrice">5</span></p>
+								</div>
+								<div class="modal-footer" id="dessert1Buy">
+								  <h3>Add to Cart</h3>
+								</div>
+							  </div>
+							</div>
+						</div>
+					</div>
+					<div class="itemWrapper" id="desserts2" 
+						onmouseenter="itemHover(this.id)">
+						<div class="wrapperTopbar">
+							<div class="itemName">S'mores Bao</div>
+							<div class="itemPrice">$4.50</div>
+						</div>
+						<div class="itemDesc">
+						Fluffy marshmallow with chocolatey goodness.
+						</div>
+						<div class="ratingsBar">
+							<img src="Ratings Pictures/1-5.png" alt="1.5 out of 5 Stars" width="200" height="100">
+						</div>
+						<div class="wrapperBottombar">
+							<button class="button addToCartButton" id="dessert2Btn"
+							onclick="openDessert2Modal(this.id)">Add to cart</button>
+							<div id="dessert2Modal" class="modal">
+							  <div class="modal-content">
+								<div class="modal-header">
+								  <span class="close">&times;</span>
+								  <h2>S'mores Bar</h2>
+								</div>
+								<div class="modal-body">
+								  <p>Quantity: <span class="quantityContainer" id="dessert2Qty">1</span>     
+								  <button onclick="increaseDessert2()">&#43;</button>   
+								  <button onclick="decreaseDessert2()">&#45;</button></p>								  
+								  <p>Price: $ <span id="dessert2DynamicPrice">5</span></p>
+								</div>
+								<div class="modal-footer" id="dessert2Buy">
+								  <h3>Add to Cart</h3>
+								</div>
+							  </div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+		<div id="beveragesHolder" class="placeHolder" id="lastPlaceHolder">
+			<img id="beveragesImage" src="Food Pictures/Beverages.jpg" alt="Default Beverages Image" width="1000" height="200">
+			<div class="foodName" id="lastFoodName">Beverages</div>
+				<div class="panel" id="lastpanel">
+					<div class="itemWrapper" id="beverages1" 
+						onmouseenter="itemHover(this.id)">
+						<div class="wrapperTopbar">
+							<div class="itemName">Blue Lemonade</div>
+							<div class="itemPrice">$2</div>
+						</div>
+						<div class="itemDesc">
+						Cool blue lemonade to quench your thirst.
+						</div>
+						<div class="ratingsBar">
+							<img src="Ratings Pictures/2.png" alt="2 out of 5 Stars" width="200" height="100">
+						</div>
+						<div class="wrapperBottombar">
+							<button class="button addToCartButton" id="beverage1Btn"
+							onclick="openBeverage1Modal(this.id)">Add to cart</button>
+							<div id="beverage1Modal" class="modal">
+							  <div class="modal-content">
+								<div class="modal-header">
+								  <span class="close">&times;</span>
+								  <h2>Blue Lemonade</h2>
+								</div>
+								<div class="modal-body">
+								  <p>Quantity: <span class="quantityContainer" id="beverage1Qty">1</span>     
+								  <button onclick="increaseBeverage1()">&#43;</button>   
+								  <button onclick="decreaseBeverage1()">&#45;</button></p>								  
+								  <p>Price: $ <span id="beverage1DynamicPrice">2</span></p>
+								</div>
+								<div class="modal-footer" id="beverage1Buy">
+								  <h3>Add to Cart</h3>
+								</div>
+							  </div>
+							</div>
+						</div>
+					</div>
+					<div class="itemWrapper" id="beverages2" 
+						onmouseenter="itemHover(this.id)">
+						<div class="wrapperTopbar">
+							<div class="itemName">Iced Tea</div>
+							<div class="itemPrice">$1.50</div>
+						</div>
+						<div class="itemDesc">
+						Our special Iced tea for those who are thirsty.
+						</div>
+						<div class="ratingsBar">
+							<img src="Ratings Pictures/4-5.png" alt="4.5 out of 5 Stars" width="200" height="100">
+						</div>
+						<div class="wrapperBottombar">
+							<button class="button addToCartButton" id="beverage2Btn"
+							onclick="openBeverage2Modal(this.id)">Add to cart</button>
+							<div id="beverage2Modal" class="modal">
+							  <div class="modal-content">
+								<div class="modal-header">
+								  <span class="close">&times;</span>
+								  <h2>Iced Tea</h2>
+								</div>
+								<div class="modal-body">
+								  <p>Quantity: <span class="quantityContainer" id="beverage2Qty">1</span>     
+								  <button onclick="increaseBeverage2()">&#43;</button>   
+								  <button onclick="decreaseBeverage2()">&#45;</button></p>								  
+								  <p>Price: $ <span id="beverage2DynamicPrice">1.50</span></p>
+								</div>
+								<div class="modal-footer" id="beverage2Buy">
+								  <h3>Add to Cart</h3>
+								</div>
+							  </div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+	</div> <!--column left-->
+	<div class="column right">
+		<div class="orderContainer" id="ordContainer">
+			<h1 id="orderContainerName">Order List</h1>
+			<div class="orderListContainer" id="orderList">
+			</div>
+			<div class="totalContainer">
+				<div class="totalName">Total: $</div>
+				<div class="totalValue" id="tValue">00.00</div>
+			</div>
+			<div class="checkOutContainer">
+				<button class="button checkoutButton" onclick="location.href='./checkout.html';">Checkout</button>
+			</div>
+		</div>
+	</div>
+	<div class="column rightest">
+	</div>
+</div> <!--row-->
+<script>
+	// Get the orderList
+	var orderList = document.getElementById("ordContainer");
+
+	// Get the offset position of the orderList
+	var sticky = orderList.offsetTop;
+
+	// Add the sticky class to the orderList when you reach its scroll position. Remove "sticky" when you leave the scroll position
+	function myFunction() {
+	  if (window.pageYOffset >= sticky) {
+		orderList.classList.add("sticky")
+	  } else {
+		orderList.classList.remove("sticky");
+	  }
+	}
+</script>
+</body>
+</html>

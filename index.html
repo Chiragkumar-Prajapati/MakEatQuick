@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="checkout.css">
+<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+<title>MakEatQuick</title>
+<!-- #region Jssor Slider Begin -->
+    <script src="jssor.slider-26.5.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        jssor_1_slider_init = function() {
+
+            var jssor_1_SlideshowTransitions = [
+              {$Duration:800,$Opacity:2}
+            ];
+
+            var jssor_1_options = {
+              $AutoPlay: 1,
+              $Align: 0,
+              $SlideshowOptions: {
+                $Class: $JssorSlideshowRunner$,
+                $Transitions: jssor_1_SlideshowTransitions,
+                $TransitionsOrder: 1
+              },
+              $ArrowNavigatorOptions: {
+                $Class: $JssorArrowNavigator$
+              },
+              $BulletNavigatorOptions: {
+                $Class: $JssorBulletNavigator$
+              }
+            };
+
+            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+
+            /*#region responsive code begin*/
+
+            var MAX_WIDTH = 980;
+
+            function ScaleSlider() {
+                var containerElement = jssor_1_slider.$Elmt.parentNode;
+                var containerWidth = containerElement.clientWidth;
+
+                if (containerWidth) {
+
+                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
+
+                    jssor_1_slider.$ScaleWidth(expectedWidth);
+                }
+                else {
+                    window.setTimeout(ScaleSlider, 30);
+                }
+            }
+
+            ScaleSlider();
+
+            $Jssor$.$AddEvent(window, "load", ScaleSlider);
+            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+            /*#endregion responsive code end*/
+        };
+</script>
+
+<style>
+
+        /* jssor slider loading skin spin css */
+        .jssorl-009-spin img {
+            animation-name: jssorl-009-spin;
+            animation-duration: 1.6s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        @keyframes jssorl-009-spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        .jssorb051 .i {position:absolute;cursor:pointer;}
+        .jssorb051 .i .b {fill:#fff;fill-opacity:0.5;}
+        .jssorb051 .i:hover .b {fill-opacity:.7;}
+        .jssorb051 .iav .b {fill-opacity: 1;}
+        .jssorb051 .i.idn {opacity:.3;}
+
+        .jssora051 {display:block;position:absolute;cursor:pointer;}
+        .jssora051 .a {fill:none;stroke:black;stroke-width:1250;stroke-miterlimit:10;}
+        .jssora051:hover {opacity:.8;}
+        .jssora051.jssora051dn {opacity:.5;}
+        .jssora051.jssora051ds {opacity:.3;pointer-events:none;}
+		
+ </style>
+</head>
+<body>
+<!--title-->
+<div class="topTitle">
+	<img src="./images/navImg.jpeg">
+	<p style="color:gold; text-shadow: 2px 2px 0px #FF0000;">MakEatQuick</p>
+</div>
+
+<!--navigation bar list-->
+<ul>
+	<li><a class="active">Home</a></li>
+	<li><a href="./menu.html">Menu</a></li>
+	<li><a href="./contact_us.html">Contact Us</a></li>
+	<li><a href="./checkout.html">Checkout</a></li>
+	<li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Profile</a>
+    <div class="dropdown-content">
+      <a href="./login.html">Login</a>
+      <a href="./create_user.html">Signup</a>
+    </div>
+  </li>
+</ul>
+
+<div class="./images/background-image"></div>
+
+<!--special header for weekly specials section-->
+<h2 class="headerTitles">Weekly Specials</h2>
+
+<div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:380px;overflow:hidden;visibility:hidden;border-top: 4px solid black; border-bottom: 4px solid black">
+        <!-- Loading Screen -->
+        <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+            <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="./images/spin.svg" />
+        </div>
+        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:380px;overflow:hidden;">
+            <div>
+                <img data-u="image" src="./images/MainDish.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="./images/img2.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="./images/img3.jpg" />
+            </div>
+        </div>
+        <!-- Bullet Navigator -->
+        <div data-u="navigator" class="jssorb051" style="position:absolute;bottom:12px;right:12px;" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
+            <div data-u="prototype" class="i" style="width:16px;height:16px;">
+                <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                    <circle class="b" cx="8000" cy="8000" r="5800"></circle>
+                </svg>
+            </div>
+        </div>
+        <!-- Arrow Navigator -->
+        <div data-u="arrowleft" class="jssora051" style="width:55px;height:55px;top:0px;left:25px" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+            <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <polyline class="a" points="11040,1920 4960,8000 11040,14080 "></polyline>
+            </svg>
+        </div>
+        <div data-u="arrowright" class="jssora051" style="width:55px;height:55px;top:0px;right:25px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+            <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <polyline class="a" points="4960,1920 11040,8000 4960,14080 "></polyline>
+            </svg>
+        </div>
+    </div>
+
+<!--order button-->
+<div class="buttonWrap">
+	<button id="toMenuButton" onclick="location.href = './menu.html';">Start Order Now</button>
+</div>
+
+<div class="blockThick"></div>
+
+<!--About us-->
+<h2 class="headerTitles">About Us</h2>
+
+<div class="aboutUs">
+	<p  style="font-size:18px">
+		MakEatQuick was founded 15 years ago by three individuals named Tyler,
+		Chirag and Chrisitan. The concept was simple, but the initiation was difficult.
+		They wanted a to create something that had the quality of a 5 star restaurant,
+		but the price and speed of a fast food joint. To accomplish this they had to 
+		deal with many perrials along their way, but after a long journey of nearly 
+		3 founding years, the three were finally able to realize their dream. In the 
+		year 2012 on Feb 2nd, MakEatQuick was born. Since then, MakEatQuick has 
+		quickly grew in stature, and has hit an all time high in demand as new 
+		store branches are opening up across the country and abroad. At MakEatQuick,
+		we stick to our founders ideals, and so when you eat with us, you can 
+		expect nothing but the best in speed, quality and price!
+	</p>
+</div>
+
+<!--About us-->
+<h2 class="headerTitles">Staff</h2>
+
+<div id="staff">
+	<div>
+		<img src="./images/chef.png">
+	</div>
+	<div>
+		<img src="./images/chef2.jpg">
+	</div>
+	<div>
+		<img src="./images/chef3.jpg">
+	</div>
+</div>
+<div id="staffDes">
+	<div>
+		<p><b>Employee Name: Tyler Garrow</b></p>
+		<br>
+		<p>Chef with 3 years experience, went to culinary school at the University of Manitoba. Favourite dishes to cook include: Shrimp with wasabi and Quesadillas. Started working as an apprentice 2 years ago and has already been promoted due to his hard work and upbeat attitude!</p>
+		<p>Employee Quote: </p>
+		<p style="padding:5px">"Since I started working for MakEatQuick two years ago, I've been able to enhance my skills and have the pleasure of serving great guests such as you!"</p>
+	</div>
+	<div>
+		<p><b>Employee Name: Christian Hintay</b></p>
+		<br>
+		<p>Chef with 30 years experience, went to culinary school at the University of Manitoba. Favourite dishes to cook include: Ramen noodles and Chicken teriyaki. Started working 10 years ago and loves to invent new dishes!</p>
+		<p>Employee Quote:</p>
+		<p style="padding:5px">"life isn't always easy, but my cooking brings out the best of it."</p>
+	</div>
+	<div>
+		<p><b>Employee Name: Chiragkumar Prajapati</b></p>
+		<br>
+		<p>Chef with 3 years experience, went to culinary school at the University of Manitoba. Favourite dishes to cook include: House special Masala Fries and Tofu stir fry. Started working as an apprentice an year ago and has already a integral part of our team!</p>
+		<p>Employee Quote: </p>
+		<p style="padding:5px">"Since I started working here a year ago, I've been able to expand my knowledge on the culinary arts as well as learn of the wonders of Christian's chicken teriyaki."</p>
+	</div>
+</div>
+<div>
+	<div style="margin-left: 33%" class="footer" style="text-align: center;" margin: auto;>
+		<p>© MakEatQuick 2017 (Group 28)</p>
+	</div>
+</div>
+
+<script src="Homepage_WeeklySalesJS.js"></script>
+<script type="text/javascript">jssor_1_slider_init();</script>
+    <!-- #endregion Jssor Slider End -->
+	
+</body>
+</html>

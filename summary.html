@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Order Summary</title>
+		<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+		<link rel="stylesheet" type="text/css" href="summary.css">
+		<script src="js/reset_form.js"></script>
+	</head>
+	<body>
+	<div class="topTitle">
+	<img src="./images/navImg.jpeg">
+	<p style="color:gold; text-shadow: 2px 2px 0px #FF0000;">MakEatQuick</p>
+	</div>
+
+<!--navigation bar list-->
+<ul>
+	<li><a href="./index.html">Home</a></li>
+	<li><a href="./menu.html">Menu</a></li>
+	<li><a href="./contact_us.html">Contact Us</a></li>
+	<li><a href="./checkout.html">Checkout</a></li>
+	<li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Profile</a>
+    <div class="dropdown-content">
+      <a href="./login.html">Login</a>
+      <a href="./create_user.html">Signup</a>
+    </div>
+  </li>
+</ul>
+		<div class="header">
+			<h1>Thank you for ordering with MakEatQuick</h1>
+			<h2 style="text-align:center">Your order will be ready in 30 minutes!</h2>
+		</div>
+		
+		<div class="container">
+			<h2 class="header">ORDER SUMMARY</h2>
+			<br>
+			<table id="head">
+				<tr class="tableheader"><th>Ordered Items</th><th>Quantity</th><th>Price per item(CAD $)</th><th>Subtotal</th></tr>
+				<tr><td>Shrimp with wasabi</td><td>2</td><td>4.25</td><td>8.50</td></tr>
+				<tr><td>Chicken Teriyaki Don</td><td>1</td><td>9.00</td><td>9.00</td></tr>
+				<tr><td>Patacones</td><td>1</td><td>4.95</td><td>4.95</td></tr>
+				<tr><td></td><td></td><td>Taxes</td><td>2.90</td></tr>
+				<tr><td></td><td></td><td>Subtotal</td><td>25.35</td></tr>
+				<tr><td></td><td></td><td>Delivery Fee</td><td>3.50</td></tr>
+				<tr><td></td><td></td><td>Total</td><td>28.85</td></tr>
+			</table>
+			<p>View our <a href="#">Privacy Policy</a>.</p>
+			
+			</div class="subcontainer">
+		</div>
+
+		<!-- The Modal -->
+		<div id="submitModal" class="modal">
+
+		  <!-- Modal content -->
+		  <div class="modal-content">
+			<span class="close">&times;</span>
+			<p>Thank you for creating a user account at MakEatQuick!</p>
+		  </div>
+
+		</div>
+		
+		<div class="footer" style="text-align: center;">
+			<p>© MakEatQuick 2017 (Group 28)</p>
+		</div>
+		
+		<script src="modal.js"></script>
+		
+	</body>
+</html>

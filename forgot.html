@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Forgot Password</title>
+		<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+		<link rel="stylesheet" type="text/css" href="create_user.css">
+		<script src="js/reset_form.js"></script>
+	</head>
+	<body>
+	<div class="topTitle">
+	<img src="./images/navImg.jpeg">
+	<p style="color:gold; text-shadow: 2px 2px 0px #FF0000;">MakEatQuick</p>
+</div>
+
+<!--navigation bar list-->
+<ul>
+	<li><a href="./index.html">Home</a></li>
+	<li><a href="./menu.html">Menu</a></li>
+	<li><a href="./contact_us.html">Contact Us</a></li>
+	<li><a href="./checkout.html">Checkout</a></li>
+	<li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Profile</a>
+    <div class="dropdown-content">
+      <a href="./login.html">Login</a>
+      <a href="./create_user.html">Signup</a>
+    </div>
+  </li>
+</ul>
+		<div class="header">
+			<h1>Forgot your password?</h1>
+			<p>Enter your email address to receive a password reset link!</p>
+		</div>
+		
+		<div class="background-image"></div>
+		
+		<div class="container">
+			<div class="subcontainer">
+			<form>
+			<label for="email">Email address: <span style="color:red">*<span></label>
+			<input style="width:51%"type="text" id="email" name="email" placeholder="Enter your Email address.." required>
+			<label for="at">@</label>
+			<select style="width:30%;">
+			  <option value="myumanitoba">myumanitoba.ca</option>
+			  <option value="gmail">gmail.com</option>
+			  <option value="outlook">outlook.com</option>
+			</select>
+			<br>
+			<input type="submit" value="Reset Password" id="submitBtn" class="button">
+			</form>
+			</div class="subcontainer">
+		</div>
+
+		<!-- The Modal -->
+		<div id="submitModal" class="modal">
+
+		  <!-- Modal content -->
+		  <div class="modal-content">
+			<span class="close">&times;</span>
+			<p>Please check your inbox for further instructions to reset your password.</p>
+		  </div>
+
+		</div>
+		
+		<div class="footer" style="text-align: center;">
+			<p>© MakEatQuick 2017 (Group 28)</p>
+		</div>
+		
+		<script src="modal.js"></script>
+		
+	</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="checkout.css">
+<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+
+<title>MakEatQuick-Checkout</title>
+<style>
+
+input[type="text"],input[type="number"] { 
+	display: block;
+    padding: 4px; 
+    border: solid 2px #E5E5E5; 
+    outline: 0; 
+    font: normal 13px/100% Verdana, Tahoma, sans-serif; 
+    width: 300px; 
+    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF)); 
+    background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px); 
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+	height: 30px;
+    } 
+   
+input:hover, textarea:hover, 
+input:focus, textarea:focus { 
+    border-color: #C9C9C9; 
+    -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px; 
+    } 
+	
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td	{
+	background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF)); 
+    background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px); 
+    border-bottom: solid 2px #E5E5E5;
+    text-align: center;
+    padding: 8px;
+}
+
+#orderInfo {
+	background-color: white;
+	float: left;
+	width: 70%;
+	margin-left: 15%;
+}
+
+.checkoutHead {
+	display: block;
+	color: gold;
+	margin: 0;
+	padding: 5px;
+	background-color: indigo;
+	text-align: left;
+	font-family: 'sofia';
+	font-size: 20px;
+}
+
+.hiddenForm {
+	opacity: 0;
+	max-height: 0;
+	overflow: hidden;
+	transition: 0.5s;
+	input[type="radio"]:checked ~ & {
+		opacity: 1;
+		max-height: 100%;
+		overlow: visable;
+		padding: 10px 20px;
+		transform: scale(1);
+	}
+}
+
+input[type="radio"]:checked ~ .hiddenForm {
+	opacity: 1;
+	max-height: 100%;
+	overflow: visable;
+	margin-left: 2%;
+}
+
+</style>
+</head>
+<body>
+<!--title-->
+<div class="topTitle">
+	<img src="./images/navImg.jpeg">
+	<p style="color:gold; text-shadow: 2px 2px 0px #FF0000;">MakEatQuick</p>
+</div>
+
+<!--navigation bar list-->
+<ul>
+	<li><a href="./index.html">Home</a></li>
+	<li><a href="./menu.html">Menu</a></li>
+	<li><a href="./contact_us.html">Contact Us</a></li>
+	<li><a class="active">Checkout</a></li>
+	<li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Profile</a>
+    <div class="dropdown-content">
+      <a href="./login.html">Login</a>
+      <a href="./create_user.html">Signup</a>
+    </div>
+  </li>
+</ul>
+<br><br><br><br>
+<div class="backgroundSetup">
+	<div id="orderInfo" style="background-color: rgb(242,242,242)">
+		<p class="checkoutHead"><b>Billing Information</b></p>
+		<form action="./summary.html">
+			<br>
+				<label style="margin-left:8px" id="fNameLab" for="fName">First Name:<span style="color:red"> *</span></label>
+				<input style="margin-left:8px" type="text" name="fName" placeholder="First Name (e.g Rob)" required>
+						
+				<label style="margin-left:8px" for="lName">Last Name:<span style="color:red"> *</span></label>
+				<input style="margin-left:8px" type="text" name="lName" placeholder="Last Name (e.g Baker)" required>
+				
+				<label style="margin-left:8px" for="email">E-mail Address:<span style="color:red"> *</span></label>
+				<input style="margin-left:8px" type="text" name="email" placeholder="E-mail (e.g Rob@outlook.com)" required>
+					
+				<label style="margin-left:8px" for="streetAddr">Street Address:<span style="color:red"> *</span></label>
+				<input style="margin-left:8px" type="text" name="streetAddr" placeholder="Street Address (e.g 123 1st Street South)" required>
+					
+				<label style="margin-left:8px" for="city">City:<span style="color:red"> *</span></label>
+				<input style="margin-left:8px" type="text" name="city" placeholder="City (e.g Winnipeg)"required>
+				
+				<label style="margin-left:8px" for="province">Province:<span style="color:red"> *</span></label>
+				<input style="margin-left:8px" type="text" name="province" placeholder="Province (e.g Manitoba)"required>
+			<br>
+			<p class="checkoutHead"><b>Shipping Information</b></p>
+				<br>
+				<div>
+					<input style="margin-left:8px" type="radio" name="order_Op" value="pickup">Pickup<br>
+				</div>
+				<div>
+					<input style="margin-left:8px" type="radio" name="order_Op" value="Delivery">Delivery<br>
+						<div class="hiddenForm">
+							<form style="margin-left:8px">
+								<br>
+								<label for="fName">First Name:</label>
+								<input type="text" name="fName" placeholder="First Name (e.g Rob)">
+										
+								<label for="lName">Last Name:</label>
+								<input type="text" name="lName" placeholder="Last Name (e.g Baker)">
+									
+								<label for="streetAddr">Street Address:</label>
+								<input type="text" name="streetAddr" placeholder="Street Address (e.g 123 1st Street South)">
+									
+								<label for="city">City:</label>
+								<input type="text" name="city" placeholder="City (e.g Winnipeg)">
+									
+								<label for="province">Province:</label>
+								<input type="text" name="province" placeholder="Province (e.g Manitoba)">
+						</div>
+				</div>
+				<br>
+				<p class="checkoutHead"><b>Payment Information</b></p>
+				<br>
+				<div>
+					<section>
+						<div style="margin-right:8px; display: inline-block">
+							<label style="margin-left:8px" for="cardNum">CreditCard Number:<span style="color:red"> *</span></label>
+							<input style="margin-left:8px" type="number" max="9999999999999999" name="cardNum" placeholder="5500005555555559"
+										 maxlength="16" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"required>
+						</div>
+							
+						<div style="display: inline-block">
+							<label for="secCode">Security Code:<span style="color:red"> *</span></label>
+							<input max="999" style="width: 90px" type="number" name="secCode" placeHolder="123"
+								   maxlength="3" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"required>
+						</div>
+							
+					</section>
+						
+					<section>
+						<div style="margin-right:8px; display: inline-block">
+							<label style="margin-left:8px" for="cardName">Name on Card:<span style="color:red"> *</span></label>
+							<input style="margin-left:8px" type="text" name="cardName" placeholder="Rob J Baker"required>
+						</div>
+							
+						<div style="display: inline-block">
+							<label for="expDateMonth" for="expDateYear">Exp Date:<span style="color:red"> *</span></label>
+							<input max="99" style="width: 40px" type="number" name="expDateMonth" placeHolder="MM"
+								   maxlength="2" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"required>
+						</div>
+						<div style="display: inline-block">
+							<input min = "0" max="9999"  style="width: 50px" type="number" name="expDateYear" placeHolder="YYYY" 
+								   maxlength="4"onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"required>
+						</div>
+					</section>
+				</div>
+				<br>
+			<p class="checkoutHead"><b>Finalize Order</b></p>
+				<br>
+			<div>
+				<table>
+					<tr style="color:gold;background-color:indigo;"><th>Ordered Items</th><th>Quantity</th><th>Price per item(CAD $)</th><th>Subtotal</th></tr>
+					<tr>
+						<td>Shrimp with wasabi</td>
+						<td>2</td>
+						<td>4.25</td>
+						<td>8.50</td>
+					</tr>
+					<tr>
+						<td>Chicken Teriyaki Don</td>
+						<td>1</td>
+						<td>9.00</td>
+						<td>9.00</td>
+					</tr>
+					<tr>
+						<td>Patacones</td>
+						<td>1</td>
+						<td>4.95</td>
+						<td>4.95</td>
+					</tr>
+				</table>
+			</div>
+			<div class="blockThin" style="margin-top:12px"></div>
+			<div>
+				<table style="margin-top: 10px">
+					<tr>
+						<td>Subtotal</td>
+						<td>25.35</td>
+					</tr>
+					<tr>
+						<td>Taxes</td>
+						<td>2.90</td>
+					</tr>
+					<tr>
+						<td>Delivery Charge</td>
+						<td>3.50</td>
+					</tr>
+					<tr>
+						<td>Total</td>
+						<td>28.85</td>
+					</tr>
+				</table>
+			</div>
+			<input id="confirmOrdBut" type="submit" value="Confirm">
+		</form>
+		<div>
+	<div style="margin-left: 27%" class="footer" style="text-align: center;" margin: auto;>
+		<p>© MakEatQuick 2017 (Group 28)</p>
+	</div>
+</div>
+	</div>
+</div>
+
+<script>
+  function maxLengthCheck(object) {
+    if (object.value.length > object.maxLength)
+      object.value = object.value.slice(0, object.maxLength)
+  }
+    
+  function isNumeric (evt) {
+    var theEvent = evt || window.event;
+    var key = theEvent.keyCode || theEvent.which;
+    key = String.fromCharCode (key);
+    var regex = /[0-9]|\./;
+    if ( !regex.test(key) ) {
+      theEvent.returnValue = false;
+      if(theEvent.preventDefault) theEvent.preventDefault();
+    }
+  }
+</script>
+</body>
+</html>

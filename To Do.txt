@@ -1,0 +1,4 @@
+Once get nav bar:
+->Profile -> Login  -> "./login.html"
+          -> Signup -> "./create_user.html"
+->Profile page -> John Doe -> Logout -> "./index.html"

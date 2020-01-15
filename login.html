@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Login</title>
+		<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+		<link rel="stylesheet" type="text/css" href="login.css">
+		<script src="js/reset_form.js"></script>
+	</head>
+	<body>
+	<div class="topTitle">
+	<img src="./images/navImg.jpeg">
+	<p style="color:gold; text-shadow: 2px 2px 0px #FF0000;">MakEatQuick</p>
+</div>
+
+<!--navigation bar list-->
+<ul>
+	<li><a href="./index.html">Home</a></li>
+	<li><a href="./menu.html">Menu</a></li>
+	<li><a href="./contact_us.html">Contact Us</a></li>
+	<li><a href="./checkout.html">Checkout</a></li>
+	<li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Profile</a>
+    <div class="dropdown-content">
+      <a href="#">Login</a>
+      <a href="./create_user.html">Signup</a>
+    </div>
+  </li>
+</ul>
+		<div class="header">
+			<h1>Login to your Account</h1>
+			<p>Login to have a personalized experience!</p>
+		</div>
+		
+		<div class="background-image"></div>
+		
+		<div class="container">
+			<div class="subcontainer">
+			<form action="./profile.html">
+			<label for="username">User Name: <span style="color:red">*<span></label>
+			<input type="text" id="username" name="username" placeholder="Enter username.." required>
+			<br>
+			<label for="password">Password: <span style="color:red">*<span></label>
+			<input type="password" id="password" name="password" placeholder="Enter password.." required>
+			<br>
+			<input type="submit" value="Login" id="submitBtn" class="button">
+			<button id="cancelBtn" class="cancelBtn" onclick="location.href='./forgot.html';">Forgot Password?</button>
+			</form>
+			</div class="subcontainer">
+		</div>
+		
+		<div class="footer" style="text-align: center;">
+			<p>© MakEatQuick 2017 (Group 28)</p>
+		</div>
+		
+		<script src="modal.js"></script>
+		
+	</body>
+</html>

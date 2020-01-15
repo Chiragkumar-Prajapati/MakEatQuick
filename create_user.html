@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Create New User Account</title>
+		<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+		<link rel="stylesheet" type="text/css" href="create_user.css">
+		<script src="js/reset_form.js"></script>
+	</head>
+	<body>
+	<div class="topTitle">
+	<img src="./images/navImg.jpeg">
+	<p style="color:gold; text-shadow: 2px 2px 0px #FF0000;">MakEatQuick</p>
+</div>
+
+<!--navigation bar list-->
+<ul>
+	<li><a href="./index.html">Home</a></li>
+	<li><a href="./menu.html">Menu</a></li>
+	<li><a href="./contact_us.html">Contact Us</a></li>
+	<li><a href="./checkout.html">Checkout</a></li>
+	<li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Profile</a>
+    <div class="dropdown-content">
+      <a href="./login.html">Login</a>
+      <a href="./create_user.html">Signup</a>
+    </div>
+  </li>
+</ul>
+		<div class="header">
+			<h1>Create a User Account</h1>
+			<p>Create a user account to have a personalized experience!</p>
+		</div>
+		
+		<div class="background-image"></div>
+		
+		<div class="container">
+			<div class="subcontainer">
+			<form action="./login.html">
+			<label for="username">User Name: <span style="color:red">*<span></label>
+			<label style="margin-left:50%" for="phone">Already have an account?</label>
+			<button id="loginBtn" class="button" onclick="location.href='./login.html';">Log In</button>
+			<input type="text" id="username" name="username" placeholder="Enter desired username.." required>
+			<br>
+			<label for="password">Password: <span style="color:red">*<span></label>
+			<input type="password" id="password" name="password" placeholder="Enter password.." required>
+			<br>
+			<label for="confpassword">Confirm Password: <span style="color:red">*<span></label>
+			<input type="password" id="confpassword" name="confpassword" placeholder="Repeat password.." required>
+			<br>
+			<label for="fullname">Full Name: <span style="color:red">*<span></label>
+			<input type="text" id="fullname" name="fullname" placeholder="Enter your full name.." required>
+			<br>
+			<label for="email">Email address: <span style="color:red">*<span></label>
+			<input style="width:51%"type="text" id="email" name="email" placeholder="Enter your Email address.." required>
+			<label for="at">@</label>
+			<select style="width:30%;">
+			  <option value="myumanitoba">myumanitoba.ca</option>
+			  <option value="gmail">gmail.com</option>
+			  <option value="outlook">outlook.com</option>
+			</select>
+			<br>
+			<label for="address">Address: </label>
+			<input type="text" id="address" name="address" placeholder="Enter your address..">
+			<br>
+			<label for="city">City: </label>
+			<input style="width:58%;" type="text" id="city" name="city" placeholder="Enter your city..">
+			<label for="state">State: </label>
+			<select style="width:30%;">
+			  <option value="Alberta">AB - Alberta</option>
+			  <option value="British Columbia">BC - British Columbia</option>
+			  <option value="Manitoba">MB - Manitoba</option>
+			  <option value="Ontario">ON - Ontario</option>
+			  <option value="Quebec">QC - Quebec</option>
+			  <option value="Saskatchewan">SK - Saskatchewan</option>
+			  <option value="Nova Scotia">NS - Nova Scotia</option>
+			</select>
+			<br>
+			<label for="postal">Postal Code: </label>
+			<input type="text" id="postal" name="postal" placeholder="Enter your postal code..">
+			<br>
+			<label for="phone">Phone Number:</label>
+			<input type="text" id="phone" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="phone" placeholder="Enter your Phone Number..">
+			<br>
+			<input type="submit" value="Create" id="submitBtn" class="button">
+			<button id="cancelBtn" class="cancelBtn" onclick="location.href='./create_user.html';">Cancel</button>
+			</form>
+			<p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+			</div class="subcontainer">
+		</div>
+
+		<!-- The Modal -->
+		<div id="submitModal" class="modal">
+
+		  <!-- Modal content -->
+		  <div class="modal-content">
+			<span class="close">&times;</span>
+			<p>Please fill out all required<span style="color:red;">*</span> fields!</p>
+		  </div>
+
+		</div>
+		
+		<div class="footer" style="text-align: center;">
+			<p>© MakEatQuick 2017 (Group 28)</p>
+		</div>
+		
+		<script src="modal.js"></script>
+		
+	</body>
+</html>
